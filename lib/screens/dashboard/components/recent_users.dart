@@ -33,16 +33,16 @@ class RecentUsers extends StatelessWidget {
                 columnSpacing: defaultPadding,
                 columns: [
                   DataColumn(
-                    label: Text("Name Surname"),
+                    label: Flexible(child: Text("Name Surname")),
                   ),
                   DataColumn(
-                    label: Text("Applied Position"),
+                    label: Flexible(child: Text("Applied Position")),
                   ),
                   DataColumn(
-                    label: Text("E-mail"),
+                    label: Flexible(child: Text("E-mail")),
                   ),
                   DataColumn(
-                    label: Text("Registration Date"),
+                    label: Flexible(child: Text("Registration Date")),
                   ),
                   DataColumn(
                     label: Text("Status"),
