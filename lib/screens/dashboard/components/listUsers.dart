@@ -1,6 +1,7 @@
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 
 import 'package:smart_admin_dashboard/core/utils/colorful_tag.dart';
+import 'package:smart_admin_dashboard/models/Ban_request_model.dart';
 import 'package:smart_admin_dashboard/models/recent_user_model.dart';
 import 'package:colorize_text_avatar/colorize_text_avatar.dart';
 import 'package:flutter/material.dart';
@@ -153,7 +154,16 @@ DataRow recentUserDataRow(UserModel userInfo, BuildContext context) {
                 Icons.check_circle_outline
 
               ),
-              onPressed: () {},
+              onPressed: () async {
+                BanRequestModel model = BanRequestModel(
+                    userId: userInfo.id);
+                await UserService.unBanUser(model);
+                //Navigator.of(context).pop();
+                setState(() {
+                  loadUsers();
+                  print("loaded");
+                });
+              },
               //View
               label: Text("Unban"),
             ),
@@ -171,7 +181,7 @@ DataRow recentUserDataRow(UserModel userInfo, BuildContext context) {
                     builder: (_) {
                       return AlertDialog(
                           title: Center(
-                            child: Text("Confirm Deletion"),
+                            child: Text("Confirm Ban"),
                           ),
                           content: Container(
                             color: secondaryColor,
@@ -179,7 +189,7 @@ DataRow recentUserDataRow(UserModel userInfo, BuildContext context) {
                             child: Column(
                               children: [
                                 Text(
-                                    "Are you sure want to delete '${userInfo.firstName}'?"),
+                                    "Are you sure want to ban  '${userInfo.firstName}'?"),
                                 SizedBox(
                                   height: 16,
                                 ),
@@ -207,8 +217,17 @@ DataRow recentUserDataRow(UserModel userInfo, BuildContext context) {
                                         ),
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.red),
-                                        onPressed: () {},
-                                        label: Text("Delete"))
+                                        onPressed: ()async {
+                                          BanRequestModel model = BanRequestModel(
+                                              userId: userInfo.id);
+                                          await UserService.banUser(model);
+                                          Navigator.of(context).pop();
+                                          setState(() {
+                                            loadUsers();
+                                            print("loaded");
+                                          });
+                                        },
+                                        label: Text("Ban"))
                                   ],
                                 )
                               ],

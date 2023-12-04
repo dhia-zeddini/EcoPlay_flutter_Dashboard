@@ -2,6 +2,7 @@ import 'dart:convert';
 
 
 import 'package:http/http.dart'as http;
+import 'package:smart_admin_dashboard/models/Ban_request_model.dart';
 
 import '../config.dart';
 import '../models/UserModel.dart';
@@ -12,15 +13,11 @@ class UserService{
 
 
   static Future<List<UserModel>?> getAllUsers()async{
-    print("service");
-    //var userToken=await SharedService.loginDetails();
     Map<String,String> requestHeaders={
       'Content-Type':'application/json',
 
     };
     var url=Uri.http(Config.apiURL,Config.userAPI);
-    //var url = Uri.parse('http://192.168.1.117:9001/user');
-    print("service22");
 
     var response=await client.get(
       url,
@@ -34,6 +31,48 @@ class UserService{
       return usersFromJson(data);
     }else{
       return null;
+    }
+  }
+
+  static Future<List<dynamic>> banUser(BanRequestModel banRequestModel)async{
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+
+    };
+    var url=Uri.http(Config.apiURL,Config.banAPI);
+
+    var response=await client.put(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(banRequestModel.toJson()),
+    );
+    print(response.statusCode);
+    print(response.body[1]);
+    if(response.statusCode==200){
+      return [true,response.body];
+    }else{
+      return [false,response.body];
+    }
+  }
+
+  static Future<List<dynamic>> unBanUser(BanRequestModel banRequestModel)async{
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+
+    };
+    var url=Uri.http(Config.apiURL,Config.unBanAPI);
+
+    var response=await client.put(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(banRequestModel.toJson()),
+    );
+    print(response.statusCode);
+    print(response.body[1]);
+    if(response.statusCode==200){
+      return [true,response.body];
+    }else{
+      return [false,response.body];
     }
   }
 
