@@ -25,51 +25,55 @@ class _AdminProductListState extends State<AdminProductList> {
     }
   }
 
+  void navigateToAddProduct() {
+    // TODO: Navigate to the Add Product page
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddProductScreen()));
+  }
+
+  void editProduct(Product product) {
+    // TODO: Implement edit functionality.
+    // For example: navigate to the edit product page
+  }
+
+  void deleteProduct(Product product) {
+    // TODO: Implement delete functionality.
+    // For example: show a confirmation dialog and then delete the product
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Product List'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+              onPressed: navigateToAddProduct,
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.green, shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ), // Text color
+              ),
+              child: Text('Add Product'),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
-        // Wrap with SingleChildScrollView
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                "Product List",
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-            ),
+          crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch the content of the column to take full width
+          children: [        
             DataTable(
-              horizontalMargin: 0,
-              columnSpacing: 16.0, // Adjust as needed
               columns: [
-                DataColumn(
-                  label: Text("Product Name"),
-                ),
-                DataColumn(
-                  label: Text("Description"),
-                ),
-                DataColumn(
-                  label: Text("Image"),
-                ),
-                DataColumn(
-                  label: Text("Price"),
-                ),
-                DataColumn(
-                  label: Text("Type"),
-                ),
-                DataColumn(
-                  label: Text("Operation"),
-                ),
+                DataColumn(label: Text("Image")),
+                DataColumn(label: Text("Product Name")),
+                DataColumn(label: Text("Description")),
+                DataColumn(label: Text("Price")),
+                DataColumn(label: Text("Type")),
+                DataColumn(label: Text("Operations")),
               ],
-              rows: List.generate(
-                productList.length,
-                (index) => productDataRow(productList[index], context),
-              ),
+              rows: productList.map((product) => productDataRow(product)).toList(),
             ),
           ],
         ),
@@ -77,59 +81,44 @@ class _AdminProductListState extends State<AdminProductList> {
     );
   }
 
-  DataRow productDataRow(Product product, BuildContext context) {
+  DataRow productDataRow(Product product) {
     return DataRow(
       cells: [
-        DataCell(
-          Text(product.name),
-        ),
-        DataCell(
-          Text(product.description),
-        ),
         DataCell(
           Image.network(
             "http://localhost:8088/images/product/${product.image}",
             width: 50,
             height: 50,
-            loadingBuilder: (BuildContext context, Widget child,
-                ImageChunkEvent? loadingProgress) {
-              if (loadingProgress == null) {
-                return child;
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            (loadingProgress.expectedTotalBytes ?? 1)
-                        : null,
-                  ),
-                );
-              }
+            fit: BoxFit.cover,
+            loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Center(
+                child: CircularProgressIndicator(
+                  value: loadingProgress.expectedTotalBytes != null
+                      ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                      : null,
+                ),
+              );
             },
           ),
         ),
-        DataCell(
-          Text(product.price),
-        ),
-        DataCell(
-          Text(product.type),
-        ),
+        DataCell(Text(product.name)),
+        DataCell(Text(product.description)),
+        DataCell(Text(product.price.toString())),
+        DataCell(Text(product.type)),
         DataCell(
           Row(
+            mainAxisSize: MainAxisSize.min, // This will keep the Row as small as possible
             children: [
-              TextButton(
-                child: Text('View', style: TextStyle(color: Colors.green)),
-                onPressed: () {
-                  // Implement view functionality.
-                },
+              // Edit Button
+              IconButton(
+                icon: Icon(Icons.edit, color: Colors.orange),
+                onPressed: () => editProduct(product),
               ),
-              SizedBox(width: 6),
-              TextButton(
-                child:
-                    Text('Delete', style: TextStyle(color: Colors.redAccent)),
-                onPressed: () {
-                  // Implement delete functionality.
-                },
+              // Delete Button
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.red),
+                onPressed: () => deleteProduct(product),
               ),
             ],
           ),
