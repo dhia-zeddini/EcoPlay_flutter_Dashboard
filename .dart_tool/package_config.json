@@ -14,6 +14,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "api_cache_manager",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/api_cache_manager-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "args",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/args-2.4.2",
       "packageUri": "lib/",
@@ -148,6 +154,18 @@
     {
       "name": "dart_style",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/dart_style-2.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "date_time_format",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/date_time_format-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "dcache",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/dcache-0.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -380,6 +398,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "jwt_decoder",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/jwt_decoder-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "logging",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
@@ -524,6 +548,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "shared_preferences_platform_interface",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/shared_preferences_platform_interface-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "shared_preferences_web",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/shared_preferences_web-2.2.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "shelf",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/shelf-1.4.1",
       "packageUri": "lib/",
@@ -554,6 +590,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "snippet_coder_utils",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/snippet_coder_utils-1.0.15",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "source_gen",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/source_gen-1.0.3",
       "packageUri": "lib/",
@@ -564,6 +606,18 @@
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/source_span-1.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "sqflite",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/sqflite-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "sqflite_common",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/sqflite_common-2.5.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "stack_trace",
@@ -586,6 +640,12 @@
     {
       "name": "string_scanner",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/string_scanner-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "synchronized",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/synchronized-3.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -674,7 +734,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-12-03T18:59:08.753136Z",
+  "generated": "2023-12-04T21:58:41.795398Z",
   "generator": "pub",
   "generatorVersion": "3.2.2"
 }

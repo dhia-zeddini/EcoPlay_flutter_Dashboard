@@ -10,6 +10,7 @@ class UserModel {
   String phoneNumber;
   String password;
   String avatar;
+  String role;
   int points;
   int score;
   int level;
@@ -30,6 +31,7 @@ class UserModel {
     required this.phoneNumber,
     required this.password,
     required this.avatar,
+    required this.role,
     required this.points,
     required this.score,
     required this.level,
@@ -52,6 +54,7 @@ class UserModel {
       phoneNumber: json['phoneNumber'],
       password: json['password'],
       avatar: json['avatar'],
+      role: json['role'],
       points: json['points'],
       score: json['score'],
       level: json['level'],
@@ -77,6 +80,7 @@ class UserModel {
       'phoneNumber': phoneNumber,
       'password': password,
       'avatar': avatar,
+      'role': role,
       'points': points,
       'score': score,
       'level': level,
