@@ -1,5 +1,8 @@
+import 'package:dcache/dcache.dart';
+import 'package:smart_admin_dashboard/Services/user_service.dart';
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 import 'package:smart_admin_dashboard/core/init/provider_list.dart';
+import 'package:smart_admin_dashboard/screens/User/TableUserScreen.dart';
 import 'package:smart_admin_dashboard/screens/challenges/CreateChallenge.dart';
 import 'package:smart_admin_dashboard/screens/challenges/challenges_home.dart';
 import 'package:smart_admin_dashboard/screens/home/home_screen.dart';
@@ -12,11 +15,17 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 
 void main() async {
+  String? cachedToken = await getCachedToken();
+print(cachedToken);
+  Widget initialScreen = cachedToken != null ? TableUserScreen() : Login(title: "test");
 
-  runApp(MyApp());
+  runApp(MyApp(initialScreen));
 }
 
 class MyApp extends StatelessWidget {
+  final Widget initialScreen;
+
+  MyApp(this.initialScreen);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,4 +50,8 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+Future<String?> getCachedToken() async {
+  final cache = await UserService.cache;
+  return cache.get('token');
 }

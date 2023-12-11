@@ -11,7 +11,7 @@ import 'package:snippet_coder_utils/FormHelper.dart';
 
 import '../../config.dart';
 import '../../models/Login_request_model.dart';
-
+import 'dart:html' as html;
 class Login extends StatefulWidget {
   Login({required this.title});
   final String title;
@@ -38,11 +38,23 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
+    checkCachedToken();
     _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 750),
     );
+  }
+
+  void checkCachedToken() async {
+    String? cachedToken = await getCachedToken();
+    print(cachedToken);
+    if (cachedToken != null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (builder) => TableUserScreen()),
+            (route) => false,
+      );
+    }
   }
 
   @override
@@ -598,5 +610,16 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     } else {
       return false;
     }
+  }
+}
+
+Future<String?> getCachedToken() async {
+  try {
+    String? token = html.window.localStorage['token'];
+    print('Cached Token: $token');
+    return token;
+  } catch (e) {
+    print('Error getting cached token: $e');
+    return null;
   }
 }

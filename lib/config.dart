@@ -4,6 +4,7 @@ class Config{
 
   static const String loginAPI="/admin/login";
   static const String userAPI="/user/";
+  static const String adminAPI="/user/admins";
   static const String banAPI="/user/ban";
   static const String unBanAPI="/user/unBan";
 

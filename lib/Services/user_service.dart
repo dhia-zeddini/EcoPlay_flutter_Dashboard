@@ -9,11 +9,11 @@ import '../config.dart';
 import '../models/Login_request_model.dart';
 import '../models/Login_response_model.dart';
 import '../models/UserModel.dart';
-
+import 'dart:html' as html;
 
 class UserService{
   static var client=http.Client();
-  static final _cache = new SimpleCache<String, String>(storage: new InMemoryStorage<String, String>( 1));
+  static final cache = new SimpleCache<String, String>(storage: new InMemoryStorage<String, String>( 1));
   Cache c = new SimpleCache<String, int>(storage: new InMemoryStorage<String, int>(20));
 
   static Future<LoginResponseModel> login(LoginRequestModel model)async{
@@ -30,7 +30,9 @@ class UserService{
     if(response.statusCode==200){
       //await SharedService.saveToken(loginResponseJson(response.body).token);
 
-      _cache.set("token", loginResponseJson(response.body).token);
+      cache.set("token", loginResponseJson(response.body).token);
+      String token = loginResponseJson(response.body).token;
+      html.window.localStorage['token'] = token;
       return loginResponseJson(response.body);
     }else{
       return loginResponseJson(response.body);
@@ -38,7 +40,7 @@ class UserService{
   }
   static Future<List<UserModel>?> getAllUsers()async{
 
-    print( _cache.get("token"));
+    print( cache.get("token"));
     Map<String,String> requestHeaders={
       'Content-Type':'application/json',
 
@@ -54,6 +56,29 @@ class UserService{
     if(response.statusCode==200){
       var data=jsonDecode(response.body);
      // print(data);
+      return usersFromJson(data);
+    }else{
+      return null;
+    }
+  }
+  static Future<List<UserModel>?> getAllAdmins()async{
+
+    print( cache.get("token"));
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+
+    };
+    var url=Uri.http(Config.apiURL,Config.adminAPI);
+
+    var response=await client.get(
+      url,
+      headers: requestHeaders,
+
+    );
+    print(response.statusCode);
+    if(response.statusCode==200){
+      var data=jsonDecode(response.body);
+      // print(data);
       return usersFromJson(data);
     }else{
       return null;
