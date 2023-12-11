@@ -44,6 +44,7 @@ dependencies:
   smooth_page_indicator: ^0.3.0-nullsafety.0
   colorize_text_avatar: ^1.0.2
   http: ^1.1.2
+  get: ^4.1.4
 
 
 
@@ -92,4 +93,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
