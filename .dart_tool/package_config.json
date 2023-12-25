@@ -14,6 +14,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "archive",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/archive-3.4.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "args",
       "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/args-2.4.2",
       "packageUri": "lib/",
@@ -150,6 +156,12 @@
       "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/dart_style-2.1.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "elegant_notification",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/elegant_notification-1.11.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
     },
     {
       "name": "equatable",
@@ -386,6 +398,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "lottie",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/lottie-2.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.16",
       "packageUri": "lib/",
@@ -498,6 +516,12 @@
       "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.7",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "pointycastle",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/pointycastle-3.7.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "pool",
@@ -674,7 +698,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-12-01T20:50:47.480627Z",
+  "generated": "2023-12-12T06:38:06.545349Z",
   "generator": "pub",
   "generatorVersion": "3.2.2"
 }

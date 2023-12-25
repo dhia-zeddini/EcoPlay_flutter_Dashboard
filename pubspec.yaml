@@ -30,6 +30,7 @@ dependencies:
   fl_chart: ^0.36.1
   image_picker_for_web: ^3.0.1
   image_picker: ^1.0.4
+  lottie: ^2.7.0
   google_fonts: ^6.1.0
   flutter_icons:
     git:
@@ -40,6 +41,7 @@ dependencies:
   build_runner: ^2.0.3
   intl: ^0.17.0
   table_calendar: ^3.0.0
+  elegant_notification: ^1.11.2
   flutter_screenutil: ^5.0.0+2
   smooth_page_indicator: ^0.3.0-nullsafety.0
   colorize_text_avatar: ^1.0.2

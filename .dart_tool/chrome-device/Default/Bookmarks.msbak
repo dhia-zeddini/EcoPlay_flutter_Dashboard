@@ -1,0 +1,351 @@
+{
+   "checksum": "5e2cfa2a6cb9e2b451a075ee94e79357",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "children": [ {
+               "date_added": "13317316643370865",
+               "date_last_used": "13337543266075960",
+               "guid": "94fc70f6-cb79-4734-a4ab-8da3c5035657",
+               "id": "13",
+               "name": "Football Betting Tips",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://www.footballbettingtips.org/tips/tips.html"
+            }, {
+               "date_added": "13323456973171068",
+               "date_last_used": "13332267402179376",
+               "guid": "75878206-bdd7-4c75-ac2f-946b01a37d4a",
+               "id": "14",
+               "name": "Football Tips and Stats - Today's Football Predictions | footballzz",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://footballzz.co.uk/"
+            }, {
+               "date_added": "13330273593868326",
+               "date_last_used": "13330784518142063",
+               "guid": "be1b1a7f-66c4-436c-94fe-18881f0d8a15",
+               "id": "15",
+               "name": "Football Predictions, Tips and Stats | AFootballReport",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://afootballreport.com/"
+            }, {
+               "date_added": "13331759079167919",
+               "date_last_used": "0",
+               "guid": "29065e7e-55cc-4def-b4d8-ab4cdd483b5b",
+               "id": "16",
+               "name": "Soccer and Football Tips, Betting Offers and Predictions from FootballPredictions.NET",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://footballpredictions.net/"
+            }, {
+               "date_added": "13333142424977777",
+               "date_last_used": "0",
+               "guid": "bdb9b4c5-ed69-46b8-b1b2-c4c2fe8ac8c7",
+               "id": "17",
+               "name": "Free Mathematical Football Predictions | TalkFootball",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://talkfootball.co.uk/"
+            }, {
+               "date_added": "13332825289931458",
+               "date_last_used": "13336842500964257",
+               "guid": "4c20fe91-de78-4297-93f9-b9f4e90239b5",
+               "id": "18",
+               "name": "Sports betting tips - Football predictions.",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://www.vitisport.de/"
+            }, {
+               "date_added": "13338608317569186",
+               "date_last_used": "0",
+               "guid": "52c3485a-831d-4c8b-8f22-0abe05d48db0",
+               "id": "19",
+               "name": "Meilleurs Pronostics Football - Cyborg Pronosoft",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://www.pronosoft.com/fr/bookmakers/meilleurs-pronostics/"
+            } ],
+            "date_added": "13317316588855795",
+            "date_last_used": "0",
+            "date_modified": "13338608317569186",
+            "guid": "ea28d814-1739-4bd9-b12f-195b3819f05e",
+            "id": "12",
+            "name": "Pronostics ",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13334644984598655",
+               "date_last_used": "13337861183933136",
+               "guid": "78cbed8c-422c-4d5a-9a77-f04aea8a822e",
+               "id": "21",
+               "name": "Esprit",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://mail.google.com/mail/u/2/#inbox"
+            }, {
+               "date_added": "13334644999553518",
+               "date_last_used": "13336220871501454",
+               "guid": "f413b915-afa1-411a-941c-cfe4ff38c9a4",
+               "id": "22",
+               "name": "a.rebhy10@gmail.com - Gmail",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://mail.google.com/mail/u/0/#inbox"
+            }, {
+               "date_added": "13334650537172256",
+               "date_last_used": "13334738262876368",
+               "guid": "6912b7ca-3a64-4bda-b825-087f683342dc",
+               "id": "23",
+               "name": "Email - Ahmed Rebhi - Outlook",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://outlook.live.com/mail/0/"
+            }, {
+               "date_added": "13334645013858437",
+               "date_last_used": "13336216077536815",
+               "guid": "3040ff58-c5a5-4429-bfa8-cfd124b78f29",
+               "id": "24",
+               "name": "a.rebhy20@gmail.com - Gmail",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://mail.google.com/mail/u/1/#inbox"
+            } ],
+            "date_added": "13334644979393720",
+            "date_last_used": "0",
+            "date_modified": "13334650537172256",
+            "guid": "8881f79a-1f77-4eae-bbb7-d79bd4d3deff",
+            "id": "20",
+            "name": "Mail",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13341259236306464",
+               "date_last_used": "0",
+               "guid": "abd8eac7-7f62-4591-bb9d-ffecb78bf785",
+               "id": "26",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "SportsBay.fr – Watch free live sports streams online – Football streaming",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://www.sportsbay.site/"
+            }, {
+               "date_added": "13341259243659920",
+               "date_last_used": "0",
+               "guid": "98c55a11-0443-4db5-91ad-13318724f08f",
+               "id": "27",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "TOTALSPORTEK - LIVE STREAMS",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://totalsportek.pro/"
+            }, {
+               "date_added": "13341259347080393",
+               "date_last_used": "0",
+               "guid": "af9e9253-7f20-46c2-9f7e-dc90844f9a5b",
+               "id": "28",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Footybite Orignal - Home of Soccer Streams Free",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://www.footybite.to/"
+            }, {
+               "date_added": "13344817516859531",
+               "date_last_used": "0",
+               "guid": "a54a24fa-db16-413b-9e7e-15e21682ccdd",
+               "id": "29",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "LiveBall - We Are Where Football Is",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://liveball.uno/"
+            } ],
+            "date_added": "13341259229167686",
+            "date_last_used": "0",
+            "date_modified": "13344817516859531",
+            "guid": "3c9369b7-1b1f-4dac-ae69-eeea21c6037f",
+            "id": "25",
+            "name": "Stream",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13342795782929663",
+               "date_last_used": "0",
+               "guid": "a45faa7b-f18f-41bf-87fb-6e3e7952a4ea",
+               "id": "31",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Habit Tracker Mobile IOS App by Purrweb UI/UX Agency on Dribbble",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://dribbble.com/shots/21367995-Habit-Tracker-Mobile-IOS-App"
+            }, {
+               "date_added": "13342795840750504",
+               "date_last_used": "0",
+               "guid": "1a3f3bf6-ed17-4922-a0ba-82dc51c7aa9b",
+               "id": "32",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "Eco Recycling App by Kristina Spiridonova for Purrweb UI/UX Agency on Dribbble",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://dribbble.com/shots/18575810-Eco-Recycling-App"
+            }, {
+               "date_added": "13342796776447868",
+               "date_last_used": "0",
+               "guid": "bdad5aec-5bca-45fe-9097-4abf81534647",
+               "id": "33",
+               "meta_info": {
+                  "power_bookmark_meta": ""
+               },
+               "name": "dribbble.com/shots/17349871/attachments/12469777?mode=media",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://dribbble.com/shots/17349871/attachments/12469777?mode=media"
+            } ],
+            "date_added": "13342795797898218",
+            "date_last_used": "0",
+            "date_modified": "13342796776447868",
+            "guid": "d6a5f453-8f18-4bcb-952e-b935e9444d00",
+            "id": "30",
+            "name": "Project",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "date_added": "13337269145213447",
+            "date_last_used": "0",
+            "guid": "82e6eba2-1551-4bac-8c69-027ff18417fd",
+            "id": "34",
+            "name": "Today's Football Matches Results & Tips | APWin",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.apwin.com/"
+         }, {
+            "date_added": "13337270479671048",
+            "date_last_used": "0",
+            "guid": "0110ee9d-7a78-4dfe-8881-45f9ec07030c",
+            "id": "35",
+            "name": "Live Sports Scores Today: Results, Predictions and Schedule - Scores24.live",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://scores24.live/en"
+         } ],
+         "date_added": "13345937500425104",
+         "date_last_used": "0",
+         "date_modified": "13337270479671048",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favourites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [ {
+            "children": [ {
+               "date_added": "13334544186700160",
+               "date_last_used": "0",
+               "guid": "30c53fd4-a5f6-4048-b631-b601f041f2fc",
+               "id": "8",
+               "name": "Soccer Streams - Original Reddit Soccer Streams",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://soccerlive.app/"
+            }, {
+               "date_added": "13335807752646823",
+               "date_last_used": "0",
+               "guid": "507da49f-162a-49aa-b81e-b12d0519931c",
+               "id": "9",
+               "name": "Football scores | RedScores",
+               "show_icon": false,
+               "source": "sync",
+               "type": "url",
+               "url": "https://redscores.com/"
+            } ],
+            "date_added": "13333878080623409",
+            "date_last_used": "0",
+            "date_modified": "13335807752646823",
+            "guid": "17234c3f-a635-47e7-b0d9-4ff218faab3b",
+            "id": "7",
+            "name": "Bookmark Bar",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "children": [  ],
+            "date_added": "13333878080623631",
+            "date_last_used": "0",
+            "date_modified": "13333878080623631",
+            "guid": "9dabcc87-fa77-4b6b-b6aa-9abcbfc395c1",
+            "id": "10",
+            "name": "Other Bookmarks",
+            "source": "unknown",
+            "type": "folder"
+         }, {
+            "children": [  ],
+            "date_added": "13333878080623667",
+            "date_last_used": "0",
+            "date_modified": "13333878080623667",
+            "guid": "c2e79ae6-69fd-4b9f-ab59-f7333a3e56b2",
+            "id": "11",
+            "name": "Synced Bookmarks",
+            "source": "unknown",
+            "type": "folder"
+         } ],
+         "date_added": "13345937500425106",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favourites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [  ],
+         "date_added": "13345937500425108",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favourites",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CjEKDgiIgQISCE1iszSMAQAAEgAgASoYZko0RXN2V3ZNQWpidFlOa2xuWVZZdz09oAYMEqgBCCMSowEKHElNZURoelQzejdWOG1wd2gxYThLYzBBaWFERT0SJDAxMTBlZTlkLTdhNzgtNGRmZS04ODgxLTQ1ZjllYzA3MDMwYxgAIAIoAjDZgczUwjE4wee6lKIxQNmBzNTCMUocNS9XR1Z2MnNwRjg0b3VpTnROLys2SXExMXkwPVofIh3/ZDhJN000aTRMdVZZVXBaeDgrWHpabTNJd1JBPWXv1p0EEqgBCCASowEKHFN4eTZKakl2aGVRajZRSG5PeVFPMGgrdzhpdz0SJDFhM2YzYmY2LWVkMTctNDkyMi1hMGJhLTgyZGM1MWM3YWE5YhgAIAAoADC0rJXftjE4kOiT37YxQJDok9+2MUocSUxuQnIzcy9HUkFMZnBaaEpkbmNqamZVTUFvPVofIh28dlhRSU91RzJ1ZUFPN05NNXN1VnhvWmdpYTBBPWUdFbA/EqgBCCESowEKHGNwZzk5S1BqMjI4RG1RcFdHdFl3T2F3NkNmZz0SJGJkYWQ1YWVjLTViY2EtNDVmZS05MDk3LTRhYmY4MTUzNDY0NxgAIAAoADCHzszftjE4i9DM37YxQIvQzN+2MUocc0YzcDB6MXZOMGFsNldETy9rYzBNTStISkpzPVofIh3eaFFNK3d3ZGtBSk9admZ6ODBxdUNvUnNSaWxBPWUdFbA/EqcBCBQSogEKHHBmdnFVQjVaNXFveUxQYVJNdVZwb0RVdTdkOD0SJDg4ODFmNzlhLTFmNzctNGVhZS1iYmI3LWQ3OWJkNGQzZGVmZhgAIAAoADCsg8OwmDE4zu/CsJgxQM7vwrCYMUocaEwxMW9GbFdPYWNRbzJrSFJMK3I3SkJiSVNJPVoeIhxPRVpUbXdmTUlwSmMvNU52V0JPYUdNMk9Zc3c9ZQAAAAASpwEICBKiAQocM09JY3pBU25IZlpGRFlBcTZLQlBEQm9jVUZvPRIkMzBjNTNmZDQtYTVmNi00MDQ4LWI2MzEtYjYwMWYwNDFmMmZjGAAgACgAMKqOu4CYMTiY8bqAmDFAmPG6gJgxShxBZDFQRVd3bnVwM2k2VXBRV0VIaDFqUlJmVVk9Wh4iHCs5ZVV3elkxb3EwQWRwa2VIeTBzNGNRM2hBTT1lotTY9BKoAQgXEqMBChx2eHdKMTFTK2N1c2ZxemtsYTgvOVpHazRVSkU9EiQ2OTEyYjdjYS0zYTY0LTRiZGEtYjgyNS0wODdmNjgzMzQyZGMYACAAKAAw+JyC3ZgxOPaMlrOYMUD2jJazmDFKHGEyMDR3eGxTdlVIWkp3NTZkUWZkanhVa0RQST1aHyId6WpvMHFoYkFZU0daZnlXV3lrbnN4VzBvaVJFRT1l+4WAkRKnAQgaEqIBChxzR0h2VDNOMTFwZG5FeklocDgwbDlQaWZPdUU9EiRhYmQ4ZWFjNy03ZjYyLTQ1OTEtYmI5ZC1mZmVjYjc4YmY3ODUYACAAKAAw+d24grExOO/FuIKxMUDvxbiCsTFKHGFUaDJtUGJaa2w2ZXJRZHhFTHFKblJyQkRocz1aHiIcSTJhYkpIam9TWllueXhEb3V3VEtlMWNSMDFnPWVOdTtvEqgBCBwSowEKHEozcDdOQzErL3lmcVJBTnk0cHVvb0cyZ2JmMD0SJGFmOWU5MjUzLTdmMjAtNDZjMi05ZjdlLWRjOTA4NDRmOWE1YhgAIAAoADDupr+CsTE40ae/grExQNGnv4KxMUocelA4ZnJHMTZDK3oxb0dHZ2l3SHV5ZGV2UDcwPVofIh3SUmorSUlpeGJvMFc0TVdCSXdRR2tKSnNQWFVZPWWi1Nj0EqcBCAcSogEKHEhQanpVcUlpanZ2K2RsUDNnNnJPZ2J5UHNRRT0SJDE3MjM0YzNmLWE2MzUtNDdlNy1iMGQ5LTRmZjIxOGZhYWIzYhgAIAAoADCBtuvClTE4mbzrwpUxQJm868KVMUoccHpGcHg5Z0xHR0xSWGtmZzJsdGo0b25CMkJZPVoeIhxzbklUSzd3b1A1VnZYK2xOT1h5ZEpiMkgyNWs9ZQAAAAASqAEIFhKjAQocWkpGYkJGMmFmYzQ4c1V5WGlRQlFPbms1VUpvPRIkZjQxM2I5MTUtYWZhMS00MTFhLTk0MWMtY2ZlNGZmMzhjOWE0GAAgACgAMKPH8sW7MTinj8SwmDFAp4/EsJgxShxKVEpjM2E3ZVFIeWZzSkVxVmdkYjJWa0VPTjg9Wh8iHadMY2dJYXdGZmhYejBnZUtiREVYQWI0WW0ydEU9ZYugjNESqAEIHhKjAQocSmphL2lIb2xwTFkwN1M1OEFPQXo4WmZHcDA0PRIkZDZhNWY0NTMtOGYxOC00YmNiLTk1MmUtYjkzNWU5NDQ0ZDAwGAAgACgAMLKsld+2MTiw55PftjFAsOeT37YxShxVQ1NaYjVHMjBucU85allnQThmNm5mUmRXVGs9Wh8iHbp2Wm9BWkR5eW0wbWU3dDZ5d3hUNzRWOHdVUWM9ZQAAAAASqQEIERKkAQocTkxHekFIeWFNMzNuc2YxNUtXOUZyZC94N3hZPRIkYmRiOWI0YzUtZWQ2OS00NmI4LWIxYjItYzRjMmZlOGFjOGM3GAAgACgAMPn5heSSMTi45IXkkjFAuOSF5JIxShwvakdNN2M1Lys4V3hPQVNTa0FOWnd0QjVOSzQ9WiAiHv/bbHJnNE02aVJnOHZyTmlPdzBQaFBmMy9LR0lrPWUt51OYEqcBCB8SogEKHFBqTTB0dDNTc1JNMVFha2FyT1lYUmFpWjBNND0SJGE0NWZhYTdiLWYxOGYtNDFiZi04N2ZiLTZlM2U3OTUyYTRlYRgAIAAoADCzrJXftjE44OeT37YxQODnk9+2MUocQStDR1lqV1FmdUtLOEVBWHh3Qk5mVGhRbllNPVoeIhx4V3g5elRjcVBoRnM5d2xpZkloWjlCVURpbmc9ZR0VsD8SpwEIFRKiAQocOUU5L0t1WnFNdEZvWm5NcUQ1eFlmck95bERvPRIkNzhjYmVkOGMtNDIyYy00ZDVhLTlhNzctZjA0YWVhOGE4MjJlGAAgACgAMN/bg/+lMTiqmMOwmDFAqpjDsJgxShxUK3BHdW5kQmxPS2lpbEF2YkNjMWFTVEVBMGc9Wh4iHE5sUUEvVzIvbVliRm1JQmV5c1NtcE5GRGUxYz1li6CM0RKpAQgSEqQBChxNS20vT1owTjdub003QWxaeHJHbGV2L2dIUTA9EiQ0YzIwZmU5MS1kZTc4LTQyOTctOTNmOS1iOWY0ZTkwMjM5YjUYACAAKAAw7LDS4KQxOPev6cyRMUD3r+nMkTFKHExJcXdDeWZ0WTJDUkJhWHovWk1ZYVdSalEwWT1aICIe/+0xYWFKKzhRTkh6RUFDQ3RHVWhXVEp2bjZiK0E9ZS0+VakSqAEIIhKjAQocN0VzT0xzZTJwYzZCdGIxbHhubWNiYUZiZ0FZPRIkODJlNmViYTItMTU1MS00YmFjLThjNjktMDI3ZmYxODQxN2ZkGAAgAigCMNiBzNTCMTi7remTojFA2IHM1MIxShx0Qm9ZRTMxZVRXMHl2ZHZoclNvMlZvRXhzdk09Wh8iHf5YSG1nKzQxWVNzdStiZGQ5cTJEbTBacXVBS1U9ZR1Pl7kSqAEIDxKjAQocZXFRMWZQSVluSWFUMmc4TE4vT3BrWlZrWDdNPRIkYmUxYjFhN2YtNjZjNC00MzZjLTk0ZmUtMTg4ODFmMGQ4YTE1GAAgACgAMLq8vYGKMTinm4qMiDFAp5uKjIgxShxyS05lQ3lsdTlMZDV5VnhHTzhXclRZUmpndXc9Wh8iHfdvdEZkNGlMRldYclJBQW1kakJGV3ZSRExaV009ZS0KHgUSqAEIDhKjAQocc041TW90dzdoT09yK3B0S0NLb011ZmwxbkZjPRIkNzU4NzgyMDYtYmRkNy00Yzc1LWFjMmYtOTQ2YjAxYTM3ZDRhGAAgACgAMOun58KPMTid09TZ7jBAndPU2e4wShxRbVlBOGRsOFY1ejR1UWh3RCtyeXNWd2ZmSHM9Wh8iHcwyVzFvdG1XUXI3RFpoNXhoYm8zQjRQdHJiUDQ9ZVh11bsSqAEIDRKjAQocNG9FQXhITGNwNWFncWZTZUdERlVBdTZDRmZjPRIkOTRmYzcwZjYtY2I3OS00NzM0LWE0YWItOGRhM2M1MDM1NjU3GAAgACgAMPOQmPSsMTjl9d7p1zBA5fXe6dcwShwxSWNTYU1SeXlYMXU0UWM5VVlpdEltbjg2akE9Wh8iHaE1bGtKTXVGRm5WREpyb2IvWjJud0UwUTlHL289ZehdJWcSpwEIDBKiAQocOVdYUnBkT3pEUzNJMWpUcVdjMUxYaVJGLzdZPRIkZWEyOGQ4MTQtMTczOS00YmQ5LWIxMmYtMTk1YjM4MTlmMDVlGAAgACgAMOD03unXMDiW9d7p1zBAlvXe6dcwShxGZ3NldWFmZU5vZDNkek9xNUNvVTl1K3BxeWc9Wh4iHDB1K0F0WUp4c09HblVEdlhvYUxKMlQyQnhQUT1lAAAAABKoAQgYEqMBChxkU3Q3azdvdzRORGt0ei82ZFo0ZzR3NjVsUEE9EiQzMDQwZmY1OC1jNWE1LTQ0MjktYmZhOC1jZmQxMjRiNzhmMjkYACAAKAAwyMTNpcMxONr+xLCYMUDIxM2lwzFKHERSVitqY094OFMyNkhVbG1NcHlGaWxQWVJxQT1aHyId9FROLy9vNys4dkw1ZXVDdkJQbGlWK21nYkJldz1lEDD/5BKoAQgLEqMBChxQVFFYaGRydDRkQ2I1bElnL2FZOHNkRzVEd3c9EiRjMmU3OWFlNi02OWZkLTRiOWYtYWI1OS1mNzMzM2EzZTU2YjIYACAAKAAwgLbrwpUxOPu768KVMUD7u+vClTFKHFJqL2hjQ3RUYzlhRi9qTDhwZlFXTHUwaHZxUT1aHyId3Gtwd3pObVY2c2k4UDNBRUM0UGFZNzFyVU9BZz1lAAAAABKJAQgBEoQBChx5eEovNmZ2a2VjcjdrcDVFUXpCNHRXTHBkYkU9EiRmNTc5NTQyMi04YmY3LTUxZDctYTgyMi00ZGUzZjYxODAxNTUYACAAKAAwxNGeh7cwONTUnoe3MEDU1J6HtzBKHGFSQ1dMZ2hGOWI1SW5xS0lEdnVKL2p2UWtGYz1aAGUAAAAAEqgBCAoSowEKHE9adFJMNEptUWtPR0tobTdEYjVwUld0MDRFVT0SJDlkYWJjYzg3LWZhNzctNGI2Yi1iNmFhLTlhYmNiZmMzOTVjMRgAIAAoADCCtuvClTE4yLzrwpUxQMi868KVMUocdXNXTDZnc1ZzMWYwcGU0YkhsdFF0cGpuNnl3PVofIh25bUxZWUN1N0E5ZEExcHJWMTdUQkRWb28vb1NvPWUAAAAAEqkBCBMSpAEKHFlaTExib2U3SnNNaW50MDBSb2x4Vi9FZXVnMD0SJDUyYzM0ODVhLTgzMWQtNGM4Yi04ZjIyLTBhYmUwNWQ0OGRiMBgAIAAoADDvs7GSpzE4vrWxkqcxQL61sZKnMUocWW5mMVFtSnJhb3VsWEl5bmhwWHJVWnNXWFFzPVogIh7/9llGTlJPYXc4UGg5UFZSM0tHdHBETWJUMWdoRT1l37aaShKoAQgdEqMBChxUN25GcDBOczhkUGtBcmFKSXgyVUYwMmNuSjA9EiRhNTRhMjRmYS1kYjE2LTQxM2ItOWU3ZS0xNWUyMTY4MmNjZGQYACAAKAAwofqUo74xOMnklKO+MUDJ5JSjvjFKHC9MeWs3UUZ4Sm9xcXZYN1ZMei9uM0VXc1VQbz1aHyId6TJIS3EyM0NzRnpKL0JoenQ3cEJZMzBPUmp1RT1lFz9pIxKnAQgJEqIBChxyUGVZcWcrbkUyb2VWWHNZZnUwOGJqbFVoSUk9EiQ1MDdkYTQ5Zi0xNjJhLTQ5YWEtYjgxZS1iMTJkMDUxOTkzMWMYACAAKAAwwuT82pwxOMvE/NqcMUDLxPzanDFKHDg2cVNqcGlNNkZvYXFUbFNZMTNESE10RmFzOD1aHiIcMklwb2pZWk1GeXRreFZuN3JhM2lWTWNiS3BvPWW+l7xtEqcBCBkSogEKHEVTODk2OEtJaHlOWnNKZFhPZmdkZU1RNG5Ecz0SJDNjOTM2OWI3LTFiMWYtNGRhYy1hZTY5LWVlZWEyMWM2MDM3ZhgAIAAoADD/p7iCsTE4h5C4grExQIeQuIKxMUocb1JDOHNtdWJiSktQb3BqOCs2YXcyOW1LeWswPVoeIhx3cnRHMXFBUEcva01Zc041Q0lnZjZPOWNuMVU9ZQAAAAASiQEIAxKEAQocbmpnRHU4OGVDcnZYcDg2cEQ3ZkhHY3FGcDg4PRIkNzUwMDlkOTMtNzA5Ny01MzJlLThiMTAtMWJhZWFjMjQxZWQwGAAgACgAMMTRnoe3MDif1p6HtzBAn9aeh7cwShx5ek5CMDFjbjU0QTdjUlUwdVQrL1BnbVR0VW89WgBlAAAAABKoAQgbEqMBChw2alo0SE1DVThNTUVmVzBpd2JJQ000bVBGUkU9EiQ5OGM1NWExMS0wNDQzLTRkYjUtOTFhZC0xMzMxODcyNGYwOGYYACAAKAAw4f64grExOM//uIKxMUDP/7iCsTFKHFBsWURMZmpRZnZwUmc2TDEvYXVZVG5hakp2VT1aHyIdpDl5SUk3dGN5R0Y5N3ByZVRQbGhmeW01dXorTT1lnPPBEhKoAQgQEqMBChxaUG8yY1F2NVhNcGVMckZSMHgvelVyUVVWa1E9EiQyOTA2NWU3ZS01NWNjLTRkZWYtYjRkOC1hYjRjZGQ0ODNiNWIYACAAKAAw55e10I0xOKePtdCNMUCnj7XQjTFKHEtmamZtQUJsYUpBOGJzdnYwQklBRWFQM0xGVT1aHyId/lNSYlhTeWJXRzVtbUhRbDB6QkpoR3U0Mm5xaz1l0T9HkRKJAQgCEoQBChxZY1NUb252RVNQd3FDczRMMmNyVmh2NjhMOTg9EiRkNjM2NGMyMy02ZGU0LTU5NDctYTgwZi1mMjA5ODFiMjJkYmYYACAAKAAwxNGeh7cwOPTUnoe3MED01J6HtzBKHG9QVmtod0JSYlY2NUtDV1IyK0lPTkhXb091OD1aAGUAAAAAMAA4AA==",
+   "version": 1
+}

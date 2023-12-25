@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
+import 'package:smart_admin_dashboard/screens/challenges/ChallengesView.dart';
 import 'package:smart_admin_dashboard/screens/challenges/CreateChallenge.dart';
 import 'package:smart_admin_dashboard/screens/home/components/side_menu.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 class ChallengesHome extends StatelessWidget {
   ChallengesHome({Key? key}) : super(key: key);
@@ -23,11 +25,30 @@ class ChallengesHome extends StatelessWidget {
         child: ListView(
           // Using ListView instead of Column for better scrolling behavior
           children: [
-            Header("Manage Challenges"),
+            Lottie.network(
+              'https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/Mobilo/A.json',
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChallengeView()),
+                );
+              },
+              child: Text('View Challenges'),
+            ),
             SizedBox(height: defaultPadding),
-            ChallengesListView(), // Assuming this widget doesn't take up full height
-            SizedBox(height: defaultPadding),
-            CreateChallengeForm(), // Now should be visible
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CreateChallengeForm(onChallengeCreated: () {})),
+                );
+              },
+              child: Text('Create New Challenge'),
+            ),
           ],
         ),
       ),
@@ -52,7 +73,7 @@ class ChallengesPanel extends StatelessWidget {
         children: [
           Header("Manage Challenges"),
           SizedBox(height: defaultPadding),
-          Expanded(child: ChallengesListView()),
+          Expanded(child: ChallengeView()),
         ],
       ),
     );
