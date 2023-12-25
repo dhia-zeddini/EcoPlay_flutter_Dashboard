@@ -81,9 +81,9 @@
     },
     {
       "name": "built_value",
-      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.8.0",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/built_value-8.8.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "characters",
@@ -111,7 +111,7 @@
     },
     {
       "name": "code_builder",
-      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/code_builder-4.8.0",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/code_builder-4.9.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -315,15 +315,15 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.0.4",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.0.5",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.8+2",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.9+1",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_for_web",
@@ -333,9 +333,9 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.8+4",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.9",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_linux",
@@ -548,6 +548,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "searchbar_animation",
+      "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/searchbar_animation-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "shelf",
       "rootUri": "file:///C:/Users/arebh/AppData/Local/Pub/Cache/hosted/pub.dev/shelf-1.4.1",
       "packageUri": "lib/",
@@ -698,7 +704,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-12-12T06:38:06.545349Z",
+  "generated": "2023-12-25T15:12:41.192386Z",
   "generator": "pub",
   "generatorVersion": "3.2.2"
 }

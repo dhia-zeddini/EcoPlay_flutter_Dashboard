@@ -8,6 +8,7 @@ import 'package:smart_admin_dashboard/screens/challenges/UserStatistics.dart';
 import 'package:smart_admin_dashboard/screens/home/components/side_menu.dart';
 import 'package:smart_admin_dashboard/responsive.dart';
 import 'package:elegant_notification/elegant_notification.dart';
+import 'package:searchbar_animation/searchbar_animation.dart';
 
 class ChallengeView extends StatefulWidget {
   const ChallengeView({Key? key}) : super(key: key);
@@ -18,12 +19,48 @@ class ChallengeView extends StatefulWidget {
 
 class _ChallengeViewState extends State<ChallengeView> {
   List<Challenge> _challenges = [];
+  List<Challenge> _filteredChallenges = [];
+  late TextEditingController _searchController = TextEditingController();
+
   bool _isLoading = true;
 
   @override
-  void initState() {
-    super.initState();
-    _fetchChallenges();
+  void dispose() {
+    _searchController.removeListener(_onSearchChanged);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged() {
+    final query = _searchController.text;
+    if (query.isNotEmpty) {
+      setState(() {
+        _filteredChallenges = _challenges
+            .where((challenge) =>
+                challenge.title.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      });
+    } else {
+      setState(() {
+        _filteredChallenges = List.from(_challenges);
+      });
+    }
+  }
+
+  void _filterChallenges(String searchTerm) {
+    if (searchTerm.isEmpty) {
+      setState(() {
+        _filteredChallenges = _challenges;
+      });
+    } else {
+      setState(() {
+        _filteredChallenges = _challenges
+            .where((challenge) => challenge.title
+                .toLowerCase()
+                .contains(searchTerm.toLowerCase()))
+            .toList();
+      });
+    }
   }
 
   Future<void> _fetchChallenges() async {
@@ -36,6 +73,8 @@ class _ChallengeViewState extends State<ChallengeView> {
         setState(() {
           _challenges =
               challengesJson.map((json) => Challenge.fromJson(json)).toList();
+          _filteredChallenges = List.from(
+              _challenges); // Initialize _filteredChallenges with all challenges
           _isLoading = false;
         });
       } else {
@@ -72,18 +111,37 @@ class _ChallengeViewState extends State<ChallengeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          Flexible(
+            child: SearchBarAnimation(
+              textEditingController: _searchController,
+              isOriginalAnimation: true,
+              onFieldSubmitted: (String value) {
+                _onSearchChanged();
+              },
+              trailingWidget: Icon(Icons.search),
+              secondaryButtonWidget: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () {
+                  _searchController.clear();
+                  _onSearchChanged();
+                },
+              ),
+              buttonWidget: Icon(Icons.search),
+            ),
+          ),
+        ],
+      ),
       drawer: Responsive.isMobile(context) ? SideMenu() : null,
       body: SafeArea(
         child: Stack(
-          // Use a Stack to overlay the FloatingActionButton
           children: [
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Side menu for larger screens
                 if (Responsive.isDesktop(context))
                   Expanded(
-                    // default flex is 1
                     child: SideMenu(),
                   ),
                 Expanded(
@@ -247,7 +305,6 @@ class _ChallengeViewState extends State<ChallengeView> {
   }
 
   Widget _buildChallengeContent() {
-    // The content of your challenge, extracted to a method for clarity
     return Container(
       padding: EdgeInsets.all(defaultPadding), // consistent padding
       decoration: BoxDecoration(
@@ -268,7 +325,7 @@ class _ChallengeViewState extends State<ChallengeView> {
               label: Text("Operation"),
             ),
           ],
-          rows: _challenges.map((challenge) {
+          rows: _filteredChallenges.map((challenge) {
             return DataRow(
               cells: [
                 DataCell(Text(challenge.id)),
