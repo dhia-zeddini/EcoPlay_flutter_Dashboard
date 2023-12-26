@@ -4,7 +4,6 @@ import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 import 'package:smart_admin_dashboard/core/init/provider_list.dart';
 import 'package:smart_admin_dashboard/screens/User/TableUserScreen.dart';
 import 'package:smart_admin_dashboard/screens/challenges/CreateChallenge.dart';
-import 'package:smart_admin_dashboard/screens/challenges/challenges_home.dart';
 import 'package:smart_admin_dashboard/screens/home/home_screen.dart';
 import 'package:smart_admin_dashboard/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';

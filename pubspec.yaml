@@ -52,6 +52,7 @@ dependencies:
   dcache: ^0.4.0
   elegant_notification: ^1.11.2
   flutter_platform_alert: ^0.5.1
+  searchbar_animation: ^0.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

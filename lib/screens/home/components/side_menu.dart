@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_admin_dashboard/screens/User/TableAdminScreen.dart';
 import 'package:smart_admin_dashboard/screens/Store/ProductTabScreen.dart';
+import 'package:smart_admin_dashboard/screens/challenges/ChallengesView.dart';
 import 'package:smart_admin_dashboard/screens/User/TableUserScreen.dart';
-import 'package:smart_admin_dashboard/screens/challenges/challenges_home.dart';
 import 'package:smart_admin_dashboard/screens/home/home_screen.dart';
 
 class SideMenu extends StatelessWidget {
@@ -52,7 +52,7 @@ class SideMenu extends StatelessWidget {
               press: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChallengesHome()),
+                  MaterialPageRoute(builder: (context) => ChallengeView()),
                 );
               },
             ),
