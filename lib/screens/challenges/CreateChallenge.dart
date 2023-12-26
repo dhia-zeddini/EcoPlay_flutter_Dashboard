@@ -66,7 +66,6 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
     );
 
     if (result != null) {
-      // On the web, the path is null and you should use the bytes instead
       setState(() {
         _media = XFile.fromData(result.files.single.bytes!,
             name: result.files.single.name);
@@ -79,7 +78,7 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
       try {
-        var uri = Uri.parse('https://ecoplay-api.onrender.com/api/challenges');
+        var uri = Uri.parse('http://192.168.1.13:9001/api/challenges');
         var request = http.MultipartRequest('POST', uri)
           ..fields['title'] = _titleController.text
           ..fields['description'] = _descriptionController.text
@@ -90,7 +89,6 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
               int.tryParse(_pointValueController.text)?.toString() ?? '0';
 
         if (_media != null) {
-          // Add file as bytes for web compatibility
           var mediaBytes = await _media!.readAsBytes();
           request.files.add(http.MultipartFile.fromBytes(
             'media',
@@ -101,7 +99,6 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
 
         var response = await request.send();
 
-        // Check for 201 status code
         if (response.statusCode == 201) {
           final responseString = await response.stream.bytesToString();
           ElegantNotification.success(
@@ -161,10 +158,25 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
                   flex: 2,
                   child: _imageBytes != null
                       ? ImagePreview(imageBytes: _imageBytes!)
-                      : Placeholder(
-                          fallbackHeight:
-                              200), // Placeholder for design purposes
+                      : Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200], // Light grey color
+                            border: Border.all(
+                              color: Colors
+                                  .grey[300]!, // Slightly darker grey border
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.photo, // Gallery icon
+                            color: Colors.grey[500], // Medium grey color
+                            size: 50,
+                          ),
+                          alignment: Alignment.center,
+                        ),
                 ),
+
                 // Spacing between image and button
                 SizedBox(width: 20),
                 // "Change File" button takes 1/3 of the space

@@ -23,12 +23,11 @@ class _ChallengeViewState extends State<ChallengeView> {
   late TextEditingController _searchController = TextEditingController();
 
   bool _isLoading = true;
-
   @override
-  void dispose() {
-    _searchController.removeListener(_onSearchChanged);
-    _searchController.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    _fetchChallenges();
+    _searchController.addListener(_onSearchChanged);
   }
 
   void _onSearchChanged() {
@@ -45,6 +44,16 @@ class _ChallengeViewState extends State<ChallengeView> {
         _filteredChallenges = List.from(_challenges);
       });
     }
+  }
+
+  void _handleDeleteChallenge(String challengeId) {
+    _deleteChallenge(challengeId, () {
+      setState(() {
+        _challenges.removeWhere((challenge) => challenge.id == challengeId);
+      });
+    }).catchError((error) {
+      print('Failed to delete the challenge: $error');
+    });
   }
 
   void _filterChallenges(String searchTerm) {
@@ -64,21 +73,22 @@ class _ChallengeViewState extends State<ChallengeView> {
   }
 
   Future<void> _fetchChallenges() async {
-    const url = 'https://ecoplay-api.onrender.com/api/challenges';
+    const url = 'http://192.168.1.13:9001/api/challenges';
     try {
       final response = await http.get(Uri.parse(url));
-
       if (response.statusCode == 200) {
         final List<dynamic> challengesJson = json.decode(response.body);
         setState(() {
           _challenges =
               challengesJson.map((json) => Challenge.fromJson(json)).toList();
-          _filteredChallenges = List.from(
-              _challenges); // Initialize _filteredChallenges with all challenges
+          _filteredChallenges = List.from(_challenges);
           _isLoading = false;
         });
       } else {
-        throw Exception('Failed to load challenges');
+        setState(() {
+          _isLoading = false;
+        });
+        print('Failed to load challenges. Status code: ${response.statusCode}');
       }
     } catch (e) {
       setState(() {
@@ -88,14 +98,15 @@ class _ChallengeViewState extends State<ChallengeView> {
     }
   }
 
-  Future<bool> _deleteChallenge(String challengeId) async {
-    final url = Uri.parse(
-        'https://ecoplay-api.onrender.com/api/challenges/$challengeId');
+  Future<bool> _deleteChallenge(String challengeId, Function onSuccess) async {
+    final url =
+        Uri.parse('http://192.168.1.13:9001/api/challenges/$challengeId');
     try {
       final response = await http.delete(url);
 
       if (response.statusCode == 204) {
         print('Challenge deleted successfully.');
+        onSuccess();
         return true;
       } else {
         print(
@@ -105,6 +116,17 @@ class _ChallengeViewState extends State<ChallengeView> {
     } catch (error) {
       print('Error deleting challenge: $error');
       return false;
+    }
+  }
+
+  Future<int> fetchFlaggedCommentsCount() async {
+    final response = await http
+        .get(Uri.parse('http://192.168.1.13:9001/api/comments/flagged-count'));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return data['flaggedCount'];
+    } else {
+      throw Exception('Failed to load flagged comments count');
     }
   }
 
@@ -153,8 +175,7 @@ class _ChallengeViewState extends State<ChallengeView> {
                           : Column(
                               // Wrap your content in a Column
                               children: [
-                                _buildChallengeContent(), // Existing content
-                                StatisticsCard(), // Your new static StatisticsCard
+                                _buildChallengeContent(),
                               ],
                             ),
                 ),
@@ -210,8 +231,7 @@ class _ChallengeViewState extends State<ChallengeView> {
 
   void _showDetailCard(Challenge challenge) {
     String imageName = challenge.media;
-    String imageUrl =
-        'https://ecoplay-api.onrender.com/images/challenges/$imageName';
+    String imageUrl = 'http://192.168.1.13:9001/images/challenges/$imageName';
 
     showDialog(
       context: context,
@@ -396,30 +416,30 @@ class _ChallengeViewState extends State<ChallengeView> {
                                                 style: ElevatedButton.styleFrom(
                                                     primary: Colors.red),
                                                 onPressed: () async {
-                                                  // Close the confirmation dialog
-                                                  Navigator.of(context).pop();
+                                                  Navigator.of(context)
+                                                      .pop(); // Close the dialog
 
-                                                  // Show a loading indicator or disable the button while processing
                                                   final didDelete =
                                                       await _deleteChallenge(
-                                                          challenge.id);
-
-                                                  if (didDelete) {
+                                                          challenge.id, () {
+                                                    // Callback function that updates the state
                                                     setState(() {
                                                       _challenges.removeWhere(
                                                           (item) =>
                                                               item.id ==
                                                               challenge.id);
                                                     });
+                                                  });
+
+                                                  if (didDelete) {
                                                     // Show a success notification
                                                     ElegantNotification.success(
                                                       title: Text('Success'),
                                                       description: Text(
-                                                        'Challenge Archived successfully.',
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .black), // Changed color to blue
-                                                      ),
+                                                          'Challenge Archived successfully.',
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .black)),
                                                     ).show(context);
                                                   } else {
                                                     // Show an error notification
