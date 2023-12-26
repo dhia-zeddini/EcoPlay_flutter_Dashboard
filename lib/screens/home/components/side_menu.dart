@@ -2,6 +2,7 @@ import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_admin_dashboard/screens/User/TableAdminScreen.dart';
+import 'package:smart_admin_dashboard/screens/Store/ProductTabScreen.dart';
 import 'package:smart_admin_dashboard/screens/User/TableUserScreen.dart';
 import 'package:smart_admin_dashboard/screens/challenges/challenges_home.dart';
 import 'package:smart_admin_dashboard/screens/home/home_screen.dart';
@@ -68,7 +69,12 @@ class SideMenu extends StatelessWidget {
             DrawerListTile(
               title: "Store",
               svgSrc: "assets/icons/shop.svg",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProductTabScreen()),
+                );
+              },
             ),
             DrawerListTile(
               title: "Astuces",
