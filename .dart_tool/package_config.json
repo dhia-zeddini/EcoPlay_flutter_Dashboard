@@ -81,9 +81,9 @@
     },
     {
       "name": "built_value",
-      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/built_value-8.8.0",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/built_value-8.8.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "characters",
@@ -111,7 +111,7 @@
     },
     {
       "name": "code_builder",
-      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/code_builder-4.8.0",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/code_builder-4.9.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -327,15 +327,15 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/image_picker-1.0.4",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/image_picker-1.0.5",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/image_picker_android-0.8.8+2",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/image_picker_android-0.8.9+1",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_for_web",
@@ -345,9 +345,9 @@
     },
     {
       "name": "image_picker_ios",
-      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.8+4",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/image_picker_ios-0.8.9",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_linux",
@@ -651,9 +651,9 @@
     },
     {
       "name": "synchronized",
-      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/synchronized-3.1.0",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/synchronized-3.1.0+1",
       "packageUri": "lib/",
-      "languageVersion": "2.18"
+      "languageVersion": "3.0"
     },
     {
       "name": "table_calendar",
@@ -740,7 +740,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-12-26T16:45:19.024849Z",
+  "generated": "2023-12-26T20:05:06.042131Z",
   "generator": "pub",
   "generatorVersion": "3.2.2"
 }
