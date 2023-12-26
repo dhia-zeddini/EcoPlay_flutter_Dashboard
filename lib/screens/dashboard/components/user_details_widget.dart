@@ -1,14 +1,37 @@
+
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 import 'package:smart_admin_dashboard/screens/dashboard/components/calendart_widget.dart';
 import 'package:smart_admin_dashboard/screens/dashboard/components/charts.dart';
 import 'package:smart_admin_dashboard/screens/dashboard/components/user_details_mini_card.dart';
 import 'package:flutter/material.dart';
 
-class UserDetailsWidget extends StatelessWidget {
+import '../../../Services/user_service.dart';
+import '../../../models/UserModel.dart';
+
+class UserDetailsWidget extends StatefulWidget {
   const UserDetailsWidget({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<UserDetailsWidget> createState() => _UserDetailsWidgetState();
+}
+
+class _UserDetailsWidgetState extends State<UserDetailsWidget> {
+  double pourcentageBanned =0;
+  double pourcentageActive =0;
+  int  nbrBanned =0;
+  int nbrActive =0;
+  int totalUsers=0 ;
+  @override
+  void initState() {
+
+    super.initState();
+    CountUsers();
+
+    print("nbrBanned");
+    print(pourcentageActive);
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,42 +43,59 @@ class UserDetailsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CalendarWidget(),
+          //CalendarWidget(),
           Text(
-            "Employment Details",
+            "Users Details",
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(height: defaultPadding),
-          Chart(),
+          Chart(pourcentageBanned: pourcentageBanned, pourcentageActive: pourcentageActive,),
           UserDetailsMiniCard(
             color: Color(0xff0293ee),
-            title: "Technical Interview",
-            amountOfFiles: "%28.3",
-            numberOfIncrease: 1328,
+            title: "Active",
+            amountOfFiles: pourcentageActive.toString()+ "%",
+            numberOfIncrease: nbrActive,
           ),
           UserDetailsMiniCard(
             color: Color(0xfff8b250),
-            title: "HR Interview",
-            amountOfFiles: "%16.7",
-            numberOfIncrease: 1328,
+            title: "Banned",
+            amountOfFiles: pourcentageBanned.toString()+ "%",
+            numberOfIncrease: nbrBanned,
           ),
-          UserDetailsMiniCard(
-            color: Color(0xff845bef),
-            title: "Final Interview",
-            amountOfFiles: "%22.4",
-            numberOfIncrease: 1328,
-          ),
-          UserDetailsMiniCard(
-            color: Color(0xff13d38e),
-            title: "Rejected",
-            amountOfFiles: "%2.3",
-            numberOfIncrease: 140,
-          ),
+
         ],
       ),
     );
+  }
+
+  Future<void> CountUsers() async {
+
+    try {
+      List<UserModel>? allUsers = await UserService.getAllUsers();
+      totalUsers =allUsers!.length;
+      print(totalUsers);
+
+      for(var user in allUsers!){
+        if(user.etatDelete){
+          nbrBanned +=1;
+        }else{
+          nbrActive +=1;
+        }
+      }
+
+
+        setState(() {
+          pourcentageActive = (nbrActive * 100) / totalUsers;
+          pourcentageBanned = (nbrBanned * 100) / totalUsers;
+        });
+
+
+
+    } catch (e) {
+      print('Error loading users: $e');
+    }
   }
 }

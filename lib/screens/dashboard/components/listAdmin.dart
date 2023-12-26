@@ -2,12 +2,19 @@ import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 
 import 'package:smart_admin_dashboard/core/utils/colorful_tag.dart';
 import 'package:smart_admin_dashboard/models/Ban_request_model.dart';
+import 'package:smart_admin_dashboard/models/NewAdmin_request_model.dart';
 import 'package:smart_admin_dashboard/models/recent_user_model.dart';
 import 'package:colorize_text_avatar/colorize_text_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_admin_dashboard/screens/dashboard/components/AddAdminForm.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 
 import '../../../Services/user_service.dart';
+import '../../../config.dart';
+import '../../../models/Login_request_model.dart';
 import '../../../models/UserModel.dart';
+import '../../../responsive.dart';
+import '../../forms/input_form.dart';
 
 class ListAdmin extends StatefulWidget {
   const ListAdmin({
@@ -20,6 +27,14 @@ class ListAdmin extends StatefulWidget {
 
 class _ListUsersState extends State<ListAdmin> {
   List<UserModel> users = [];
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? firstName;
+  String? lastName;
+  String? phoneNumber;
+  String? email;
+  String? password;
+  bool isAPIcallProcess = false;
+  bool hidePwd = true;
   @override
   void initState() {
 
@@ -42,6 +57,45 @@ class _ListUsersState extends State<ListAdmin> {
           Text(
             "List Admins",
             style: Theme.of(context).textTheme.subtitle1,
+          ),
+          ElevatedButton.icon(
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.green,
+              padding: EdgeInsets.symmetric(
+                horizontal: defaultPadding * 1.5,
+                vertical:
+                defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+              ),
+            ),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (_) {
+                    return AlertDialog(
+                        title: Center(
+                          child: Text("New Admin"),
+                        ),
+                        content: Container(
+
+                          //height: 70,
+                          child: Column(
+                            children: [
+                              if (Responsive.isDesktop(context))
+                              Form(
+                                key: _formKey,
+                                child: addFormUI(context),
+                              ),
+
+
+                            ],
+                          ),
+                        ));
+                  });
+            },
+            icon: Icon(Icons.add),
+            label: Text(
+              "Add New",
+            ),
           ),
           SingleChildScrollView(
             //scrollDirection: Axis.horizontal,
@@ -259,4 +313,195 @@ Future<void> loadUsers() async {
     print('Error loading users: $e');
   }
 }
+
+  Widget addFormUI(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+       // mainAxisAlignment: MainAxisAlignment.start,
+        //crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "firstname",
+              "First Name",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "First Name can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                firstName = onSavedVal;
+              },
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.person),
+              borderFocusColor: Colors.green,
+              prefixIconColor: Colors.white,
+              borderColor: Colors.black,
+              textColor: Colors.white,
+              hintColor: Colors.black.withOpacity(0.2),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "lastname",
+              "Last Name",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "Last Name can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                lastName = onSavedVal;
+              },
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.person),
+              borderFocusColor: Colors.green,
+              prefixIconColor: Colors.white,
+              borderColor: Colors.black,
+              textColor: Colors.white,
+              hintColor: Colors.black.withOpacity(0.2),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "email",
+              "Email",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "Email can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                email = onSavedVal;
+              },
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.email),
+              borderFocusColor: Colors.green,
+              prefixIconColor: Colors.white,
+              borderColor: Colors.black,
+              textColor: Colors.white,
+              hintColor: Colors.black.withOpacity(0.2),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "phoneNumber",
+              "Phone Number",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "Phone Number can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                phoneNumber = onSavedVal;
+              },
+
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.call),
+              borderFocusColor: Colors.green,
+              prefixIconColor: Colors.white,
+              borderColor: Colors.black,
+              textColor: Colors.white,
+              hintColor: Colors.black.withOpacity(0.2),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+            ),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "password",
+              "Password",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "Password can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                password = onSavedVal;
+              },
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.lock),
+              borderFocusColor: Colors.green,
+              prefixIconColor: Colors.white,
+              borderColor: Colors.black,
+              textColor: Colors.white,
+              hintColor: Colors.black.withOpacity(0.2),
+              obscureText: hidePwd,
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      hidePwd = !hidePwd;
+                    });
+                  },
+                  color: Colors.white.withOpacity(0.7),
+                  icon: Icon(
+                    hidePwd ?  Icons.visibility: Icons.visibility_off,
+                  )),
+            ),
+          ),
+
+          const SizedBox(
+            height: 50,
+          ),
+          Center(
+            child: FormHelper.submitButton(
+              "Save",
+                  () {
+                if (validateAndSave()) {
+                  setState(() {
+                    isAPIcallProcess = true;
+                  });
+                  NewAdminRequestModel model = NewAdminRequestModel(
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    password: password,
+                  );
+                  UserService.newAdmin(model).then((response) {
+                    setState(() {
+                      isAPIcallProcess = false;
+                    });
+                    FormHelper.showSimpleAlertDialog(context, Config.appName,
+                        response.success, "OK", () {
+                          Navigator.pop(context);
+                        });
+                  });
+                }
+              },
+              btnColor: Colors.white,
+              borderColor: Colors.black,
+              txtColor: Colors.black,
+            ),
+          ),
+
+        ],
+      ),
+    );
+  }
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

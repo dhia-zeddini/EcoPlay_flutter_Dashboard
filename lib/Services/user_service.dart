@@ -4,10 +4,12 @@ import 'dart:convert';
 import 'package:dcache/dcache.dart';
 import 'package:http/http.dart'as http;
 import 'package:smart_admin_dashboard/models/Ban_request_model.dart';
+import 'package:smart_admin_dashboard/models/NewAdmin_response_model.dart';
 
 import '../config.dart';
 import '../models/Login_request_model.dart';
 import '../models/Login_response_model.dart';
+import '../models/NewAdmin_request_model.dart';
 import '../models/UserModel.dart';
 import 'dart:html' as html;
 
@@ -36,6 +38,23 @@ class UserService{
       return loginResponseJson(response.body);
     }else{
       return loginResponseJson(response.body);
+    }
+  }
+  static Future<NewAdminResponseModel> newAdmin(NewAdminRequestModel model)async{
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+    };
+    var url=Uri.http(Config.apiURL,Config.newAdminAPI);
+    var response=await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+    /*print(url);*/
+    if(response.statusCode==200){
+      return newAdminResponseJson(response.body);
+    }else{
+      return newAdminResponseJson(response.body);
     }
   }
   static Future<List<UserModel>?> getAllUsers()async{
