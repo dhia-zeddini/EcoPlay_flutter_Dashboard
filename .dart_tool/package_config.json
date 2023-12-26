@@ -170,6 +170,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "elegant_notification",
+      "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/elegant_notification-1.11.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///Users/zeddindhia/.pub-cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
@@ -734,7 +740,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-12-04T21:58:41.795398Z",
+  "generated": "2023-12-26T16:45:19.024849Z",
   "generator": "pub",
   "generatorVersion": "3.2.2"
 }

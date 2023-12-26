@@ -1,3 +1,5 @@
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 
@@ -21,13 +23,12 @@ class ListUsers extends StatefulWidget {
 
 class _ListUsersState extends State<ListUsers> {
   List<UserModel> users = [];
+
   final TextEditingController searchController = TextEditingController();
   @override
   void initState() {
     super.initState();
     loadUsers();
-
-    print(users);
   }
 
   @override
@@ -151,9 +152,19 @@ class _ListUsersState extends State<ListUsers> {
                   BanRequestModel model = BanRequestModel(userId: userInfo.id);
                   await UserService.unBanUser(model);
                   //Navigator.of(context).pop();
+                  ElegantNotification.success(
+                    width: 360,
+                    notificationPosition: NotificationPosition.topRight,
+                    animation: AnimationType.fromRight,
+                    title: Text('Success',
+                    style: TextStyle(color: Colors.black),),
+                    description: Text('User unbanned successfully',
+                      style: TextStyle(color: Colors.black),),
+                    onDismiss: () {},
+                  ).show(context);
                   setState(() {
                     loadUsers();
-                    print("loaded");
+
                   });
                 },
                 //View
@@ -176,7 +187,7 @@ class _ListUsersState extends State<ListUsers> {
                               child: Text("Confirm Ban"),
                             ),
                             content: Container(
-                              color: secondaryColor,
+                             // color: secondaryColor,
                               height: 70,
                               child: Column(
                                 children: [
@@ -215,6 +226,16 @@ class _ListUsersState extends State<ListUsers> {
                                                     userId: userInfo.id);
                                             await UserService.banUser(model);
                                             Navigator.of(context).pop();
+                                            ElegantNotification.success(
+                                              width: 360,
+                                              notificationPosition: NotificationPosition.topRight,
+                                              animation: AnimationType.fromRight,
+                                              title: Text('Success',
+                                                style: TextStyle(color: Colors.black),),
+                                              description: Text('User banned successfully',
+                                                style: TextStyle(color: Colors.black),),
+                                              onDismiss: () {},
+                                            ).show(context);
                                             setState(() {
                                               loadUsers();
                                               print("loaded");

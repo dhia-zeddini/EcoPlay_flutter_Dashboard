@@ -50,6 +50,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   shared_preferences_web: ^2.2.2
   dcache: ^0.4.0
+  elegant_notification: ^1.11.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
