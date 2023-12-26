@@ -230,6 +230,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_platform_alert",
+      "rootUri": "file:///C:/Users/MSI/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_platform_alert-0.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/MSI/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.17",
       "packageUri": "lib/",
@@ -674,7 +680,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2023-12-04T11:58:37.619880Z",
+  "generated": "2023-12-26T19:43:35.099953Z",
   "generator": "pub",
-  "generatorVersion": "3.2.2"
+  "generatorVersion": "3.2.3"
 }

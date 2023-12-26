@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_admin_dashboard/models/Product.dart';
+import 'package:smart_admin_dashboard/screens/Store/components/AddProductScreen.dart';
+import 'package:smart_admin_dashboard/screens/Store/components/EditProductScreen.dart';
+import 'package:smart_admin_dashboard/screens/Store/components/payementstati.dart';
 import 'package:smart_admin_dashboard/services/ProductService.dart';
 
 class AdminProductList extends StatefulWidget {
@@ -25,19 +28,121 @@ class _AdminProductListState extends State<AdminProductList> {
     }
   }
 
-  void navigateToAddProduct() {
-    // TODO: Navigate to the Add Product page
-    // Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddProductScreen()));
+  Widget buildAddProductView() {
+    return AddProductScreen(
+      onAddProduct: (Product product) {
+        setState(() {
+          productList.add(product);
+        });
+      },
+    );
   }
 
-  void editProduct(Product product) {
-    // TODO: Implement edit functionality.
-    // For example: navigate to the edit product page
+  Future<void> showAddProductDialog() async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            'Add Product',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+          content: buildAddProductView(),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'Close',
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        );
+      },
+    );
   }
 
-  void deleteProduct(Product product) {
-    // TODO: Implement delete functionality.
-    // For example: show a confirmation dialog and then delete the product
+ void editProduct(Product product) {
+  Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => EditProductScreen(
+      product: product,
+      onUpdateProduct: (updatedProduct) {
+        setState(() {
+          int index = productList.indexWhere((p) => p.id == updatedProduct.id);
+          if (index != -1) {
+            productList[index] = updatedProduct;
+          }
+        });
+      },
+    ),
+  ));
+}
+
+
+  void deleteProduct(Product product) async {
+    final shouldDelete = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(
+            'Confirm Delete',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+          content: Text(
+            'Are you sure you want to delete this product?',
+            style: TextStyle(
+              color: const Color.fromARGB(255, 255, 254, 254),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                'No',
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+            ),
+            TextButton(
+              child: Text(
+                'Yes',
+                style: TextStyle(color: Colors.green),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(true);
+              },
+            ),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        );
+      },
+    ) ??
+        false;
+
+    if (shouldDelete) {
+      final success = await ProductService.deleteProduct(product.id);
+      if (success) {
+        setState(() {
+          productList.removeWhere((item) => item.id == product.id);
+        });
+      } else {
+        print('Failed to delete the product');
+      }
+    }
   }
 
   @override
@@ -45,33 +150,55 @@ class _AdminProductListState extends State<AdminProductList> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Product List'),
+        foregroundColor: Colors.black,
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: navigateToAddProduct,
+              onPressed: showAddProductDialog,
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.green, shape: RoundedRectangleBorder(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                ), // Text color
+                ),
               ),
               child: Text('Add Product'),
             ),
           ),
+           Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              // This is where you navigate to the PaymentsScreen
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => PaymentsScreen()),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.blue, // Choose a different color to distinguish this button
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            child: Text('View Stats'),
+          ),
+        ),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch the content of the column to take full width
-          children: [        
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
             DataTable(
               columns: [
-                DataColumn(label: Text("Image")),
-                DataColumn(label: Text("Product Name")),
-                DataColumn(label: Text("Description")),
-                DataColumn(label: Text("Price")),
-                DataColumn(label: Text("Type")),
-                DataColumn(label: Text("Operations")),
+                DataColumn(label: Text("Image", style: TextStyle(color: Colors.green))),
+                DataColumn(label: Text("Product Name", style: TextStyle(color: Colors.green))),
+                DataColumn(label: Text("Description", style: TextStyle(color: Colors.green))),
+                DataColumn(label: Text("Price", style: TextStyle(color: Colors.green))),
+                DataColumn(label: Text("Type", style: TextStyle(color: Colors.green))),
+                DataColumn(label: Text("Operations", style: TextStyle(color: Colors.green))),
               ],
               rows: productList.map((product) => productDataRow(product)).toList(),
             ),
@@ -85,37 +212,49 @@ class _AdminProductListState extends State<AdminProductList> {
     return DataRow(
       cells: [
         DataCell(
-          Image.network(
-            "http://localhost:8088/images/product/${product.image}",
-            width: 50,
-            height: 50,
-            fit: BoxFit.cover,
-            loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Center(
-                child: CircularProgressIndicator(
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
-                      : null,
-                ),
-              );
-            },
+          Container(
+            child: Image.network(
+              "http://localhost:8088/images/product/${product.image}",
+              width: 50,
+              height: 50,
+              fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded / (loadingProgress.expectedTotalBytes ?? 1)
+                        : null,
+                  ),
+                );
+              },
+            ),
           ),
         ),
-        DataCell(Text(product.name)),
-        DataCell(Text(product.description)),
-        DataCell(Text(product.price.toString())),
-        DataCell(Text(product.type)),
+        DataCell(Text(
+          product.name,
+          style: TextStyle(color: Colors.black),
+        )),
+        DataCell(Text(
+          product.description,
+          style: TextStyle(color: Colors.black),
+        )),
+        DataCell(Text(
+          product.price.toString(),
+          style: TextStyle(color: Colors.black),
+        )),
+        DataCell(Text(
+          product.type,
+          style: TextStyle(color: Colors.black),
+        )),
         DataCell(
           Row(
-            mainAxisSize: MainAxisSize.min, // This will keep the Row as small as possible
+            mainAxisSize: MainAxisSize.min,
             children: [
-              // Edit Button
               IconButton(
                 icon: Icon(Icons.edit, color: Colors.orange),
                 onPressed: () => editProduct(product),
               ),
-              // Delete Button
               IconButton(
                 icon: Icon(Icons.delete, color: Colors.red),
                 onPressed: () => deleteProduct(product),
