@@ -4,6 +4,9 @@ import 'package:smart_admin_dashboard/screens/Store/components/AddProductScreen.
 import 'package:smart_admin_dashboard/screens/Store/components/EditProductScreen.dart';
 import 'package:smart_admin_dashboard/screens/Store/components/payementstati.dart';
 import 'package:smart_admin_dashboard/services/ProductService.dart';
+import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
+
+import 'package:smart_admin_dashboard/core/utils/colorful_tag.dart';
 
 class AdminProductList extends StatefulWidget {
   @override
@@ -145,13 +148,25 @@ class _AdminProductListState extends State<AdminProductList> {
     }
   }
 
+
+
+
+  /*******************************/
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Product List'),
-        foregroundColor: Colors.black,
-        actions: [
+    return Container(
+      padding: EdgeInsets.all(defaultPadding),
+      decoration: BoxDecoration(
+        color: secondaryColor,
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Product List",
+            style: Theme.of(context).textTheme.subtitle1,
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
@@ -166,44 +181,43 @@ class _AdminProductListState extends State<AdminProductList> {
               child: Text('Add Product'),
             ),
           ),
-           Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: ElevatedButton(
-            onPressed: () {
-              // This is where you navigate to the PaymentsScreen
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => PaymentsScreen()),
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.blue, // Choose a different color to distinguish this button
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // This is where you navigate to the PaymentsScreen
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => PaymentsScreen()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue, // Choose a different color to distinguish this button
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: Text('View Stats'),
+            ),
+          ),
+          SingleChildScrollView(
+            //scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: double.infinity,
+              child:  DataTable(
+                columns: [
+                  DataColumn(label: Text("Image")),
+                  DataColumn(label: Text("Product Name")),
+                  DataColumn(label: Text("Description")),
+                  DataColumn(label: Text("Price")),
+                  DataColumn(label: Text("Type")),
+                  DataColumn(label: Text("Operations")),
+                ],
+                rows: productList.map((product) => productDataRow(product)).toList(),
               ),
             ),
-            child: Text('View Stats'),
           ),
-        ),
         ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DataTable(
-              columns: [
-                DataColumn(label: Text("Image", style: TextStyle(color: Colors.green))),
-                DataColumn(label: Text("Product Name", style: TextStyle(color: Colors.green))),
-                DataColumn(label: Text("Description", style: TextStyle(color: Colors.green))),
-                DataColumn(label: Text("Price", style: TextStyle(color: Colors.green))),
-                DataColumn(label: Text("Type", style: TextStyle(color: Colors.green))),
-                DataColumn(label: Text("Operations", style: TextStyle(color: Colors.green))),
-              ],
-              rows: productList.map((product) => productDataRow(product)).toList(),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -233,26 +247,22 @@ class _AdminProductListState extends State<AdminProductList> {
         ),
         DataCell(Text(
           product.name,
-          style: TextStyle(color: Colors.black),
         )),
         DataCell(Text(
           product.description,
-          style: TextStyle(color: Colors.black),
         )),
         DataCell(Text(
           product.price.toString(),
-          style: TextStyle(color: Colors.black),
         )),
         DataCell(Text(
           product.type,
-          style: TextStyle(color: Colors.black),
         )),
         DataCell(
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
-                icon: Icon(Icons.edit, color: Colors.orange),
+                icon: Icon(Icons.edit, color: Colors.green),
                 onPressed: () => editProduct(product),
               ),
               IconButton(
