@@ -18,6 +18,13 @@ class MiniInformationWidget extends StatefulWidget {
 int _value = 1;
 
 class _MiniInformationWidgetState extends State<MiniInformationWidget> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    print(widget.dailyData.totalStorage!);
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,20 +108,20 @@ class _MiniInformationWidgetState extends State<MiniInformationWidget> {
           ),
           ProgressLine(
             color: widget.dailyData.color!,
-            percentage: widget.dailyData.percentage!,
+            percentage: _value== 1? int.parse(widget.dailyData.totalStorage!) : int.parse(widget.dailyData.weeklyStorage!),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${widget.dailyData.volumeData}",
+                "${ _value== 1?widget.dailyData.volumeData: widget.dailyData.weeklyData}",
                 style: Theme.of(context)
                     .textTheme
                     .caption!
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                widget.dailyData.totalStorage!,
+                _value== 1?"+%"+widget.dailyData.totalStorage!:"+%"+widget.dailyData.weeklyStorage!,
                 style: Theme.of(context)
                     .textTheme
                     .caption!

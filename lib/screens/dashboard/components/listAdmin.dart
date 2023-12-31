@@ -58,44 +58,53 @@ class _ListUsersState extends State<ListAdmin> {
             "List Admins",
             style: Theme.of(context).textTheme.subtitle1,
           ),
-          ElevatedButton.icon(
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.green,
-              padding: EdgeInsets.symmetric(
-                horizontal: defaultPadding * 1.5,
-                vertical:
-                defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 10,
               ),
-            ),
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (_) {
-                    return AlertDialog(
-                        title: Center(
-                          child: Text("New Admin"),
-                        ),
-                        content: Container(
+              ElevatedButton.icon(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: defaultPadding * 1.5,
+                    vertical:
+                    defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
+                  ),
+                ),
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (_) {
+                        return AlertDialog(
+                            title: Center(
+                              child: Text("New Admin"),
+                            ),
+                            content: Container(
 
-                          //height: 70,
-                          child: Column(
-                            children: [
-                              if (Responsive.isDesktop(context))
-                              Form(
-                                key: _formKey,
-                                child: addFormUI(context),
+                              //height: 70,
+                              child: Column(
+                                children: [
+                                  if (Responsive.isDesktop(context))
+                                    Form(
+                                      key: _formKey,
+                                      child: addFormUI(context),
+                                    ),
+
+
+                                ],
                               ),
-
-
-                            ],
-                          ),
-                        ));
-                  });
-            },
-            icon: Icon(Icons.add),
-            label: Text(
-              "Add New",
-            ),
+                            ));
+                      });
+                },
+                icon: Icon(Icons.add),
+                label: Text(
+                  "Add New",
+                ),
+              ),
+            ],
           ),
           SingleChildScrollView(
             //scrollDirection: Axis.horizontal,

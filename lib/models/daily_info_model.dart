@@ -7,7 +7,9 @@ class DailyInfoModel {
   IconData? icon;
   String? title;
   String? totalStorage;
+  String? weeklyStorage;
   int? volumeData;
+  int? weeklyData;
   int? percentage;
   Color? color;
   List<Color>? colors;
@@ -17,7 +19,9 @@ class DailyInfoModel {
     this.icon,
     this.title,
     this.totalStorage,
+    this.weeklyStorage,
     this.volumeData,
+    this.weeklyData,
     this.percentage,
     this.color,
     this.colors,
@@ -27,8 +31,10 @@ class DailyInfoModel {
   DailyInfoModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     volumeData = json['volumeData'];
+    weeklyData = json['weeklyData'];
     icon = json['icon'];
     totalStorage = json['totalStorage'];
+    weeklyStorage = json['weeklyStorage'];
     color = json['color'];
     percentage = json['percentage'];
     colors = json['colors'];
@@ -39,8 +45,10 @@ class DailyInfoModel {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['volumeData'] = this.volumeData;
+    data['weeklyData'] = this.weeklyData;
     data['icon'] = this.icon;
     data['totalStorage'] = this.totalStorage;
+    data['weeklyStorage'] = this.weeklyStorage;
     data['color'] = this.color;
     data['percentage'] = this.percentage;
     data['colors'] = this.colors;
@@ -58,10 +66,12 @@ List<DailyInfoModel> dailyDatas =
 
 var dailyData = [
   {
-    "title": "Employee",
+    "title": "New Users",
     "volumeData": 1328,
+    "weeklyData": 1328,
     "icon": FlutterIcons.user_alt_faw5s,
-    "totalStorage": "+ %20",
+    "totalStorage": "20",
+    "weeklyStorage": "20",
     "color": primaryColor,
     "percentage": 35,
     "colors": [
@@ -106,8 +116,10 @@ var dailyData = [
   {
     "title": "On Leave",
     "volumeData": 1328,
+    "weeklyData": 1328,
     "icon": FlutterIcons.message1_ant,
-    "totalStorage": "+ %5",
+    "totalStorage": "5",
+    "weeklyStorage": "5",
     "color": Color(0xFFFFA113),
     "percentage": 35,
     "colors": [Color(0xfff12711), Color(0xfff5af19)],
@@ -149,8 +161,10 @@ var dailyData = [
   {
     "title": "Onboarding",
     "volumeData": 1328,
+    "weeklyData": 1328,
     "icon": FlutterIcons.comment_alt_faw5s,
-    "totalStorage": "+ %8",
+    "totalStorage": "8",
+    "weeklyStorage": "8",
     "color": Color(0xFFA4CDFF),
     "percentage": 10,
     "colors": [Color(0xff2980B9), Color(0xff6DD5FA)],
@@ -192,8 +206,10 @@ var dailyData = [
   {
     "title": "Open Position",
     "volumeData": 1328,
+    "weeklyData": 1328,
     "icon": FlutterIcons.heart_faw5s,
-    "totalStorage": "+ %8",
+    "totalStorage": "48",
+    "weeklyStorage": "48",
     "color": Color(0xFFd50000),
     "percentage": 10,
     "colors": [Color(0xff93291E), Color(0xffED213A)],
@@ -235,8 +251,10 @@ var dailyData = [
   {
     "title": "Efficiency",
     "volumeData": 5328,
+    "weeklyData": 5328,
     "icon": FlutterIcons.bell_faw5s,
-    "totalStorage": "- %5",
+    "totalStorage": "5",
+    "weeklyStorage": "5",
     "color": Color(0xFF00F260),
     "percentage": 78,
     "colors": [Color(0xff0575E6), Color(0xff00F260)],
