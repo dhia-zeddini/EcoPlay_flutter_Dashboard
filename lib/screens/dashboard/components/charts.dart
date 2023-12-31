@@ -77,7 +77,7 @@ class _ChartState extends State<Chart> {
           return PieChartSectionData(
             color: const Color(0xff0293ee),
             value: pourcentageActive,
-            title: pourcentageActive.toString()+ "%",
+            title: pourcentageActive.toStringAsFixed(2)+ "%",
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,
@@ -88,7 +88,7 @@ class _ChartState extends State<Chart> {
           return PieChartSectionData(
             color: const Color(0xfff8b250),
             value: pourcentageBanned,
-            title: pourcentageBanned.toString()+ "%",
+            title: pourcentageBanned.toStringAsFixed(2)+ "%",
             radius: radius,
             titleStyle: TextStyle(
                 fontSize: fontSize,

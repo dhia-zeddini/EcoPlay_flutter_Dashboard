@@ -56,13 +56,13 @@ class _UserDetailsWidgetState extends State<UserDetailsWidget> {
           UserDetailsMiniCard(
             color: Color(0xff0293ee),
             title: "Active",
-            amountOfFiles: pourcentageActive.toString()+ "%",
+            amountOfFiles: pourcentageActive.toStringAsFixed(2)+ "%",
             numberOfIncrease: nbrActive,
           ),
           UserDetailsMiniCard(
             color: Color(0xfff8b250),
             title: "Banned",
-            amountOfFiles: pourcentageBanned.toString()+ "%",
+            amountOfFiles: pourcentageBanned.toStringAsFixed(2)+ "%",
             numberOfIncrease: nbrBanned,
           ),
 
