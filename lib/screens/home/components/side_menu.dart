@@ -6,6 +6,7 @@ import 'package:smart_admin_dashboard/screens/Store/ProductTabScreen.dart';
 import 'package:smart_admin_dashboard/screens/challenges/ChallengesView.dart';
 import 'package:smart_admin_dashboard/screens/User/TableUserScreen.dart';
 import 'package:smart_admin_dashboard/screens/home/home_screen.dart';
+import 'package:smart_admin_dashboard/screens/quiz/QuizHome.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({
@@ -64,7 +65,12 @@ class SideMenu extends StatelessWidget {
             DrawerListTile(
               title: "Quizzes",
               svgSrc: "assets/icons/quiz.svg",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QuizHome()),
+                );
+              },
             ),
             DrawerListTile(
               title: "Store",
