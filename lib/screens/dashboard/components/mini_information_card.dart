@@ -7,6 +7,9 @@ import 'package:smart_admin_dashboard/screens/forms/input_form.dart';
 import 'package:flutter/material.dart';
 import '../../../Services/user_service.dart';
 import '../../../models/UserModel.dart';
+import 'package:intl/intl.dart';
+import 'package:fl_chart/fl_chart.dart';
+
 class MiniInformation extends StatelessWidget {
   const MiniInformation({
     Key? key,
@@ -84,8 +87,9 @@ class _InformationCardState extends State<InformationCard> {
   @override
   void initState() {
     super.initState();
+    print(dailyInfo[0].spots);
     loadUsers();
-    print(dailyInfo[0].title);
+
   }
   @override
   Widget build(BuildContext context) {
@@ -117,7 +121,7 @@ class _InformationCardState extends State<InformationCard> {
          totalUsers =allUsers!.length;
         // Calculate daily and weekly counts
         Map<String, int> counts = calculateCounts(users);
-
+        Map<String, int> dailyCounts = calculateDailyCounts(users);
         if (counts != null) {
           var dailyCount = counts['dailyCount'] ?? 0;
           var weeklyCount = counts['weeklyCount'] ?? 0;
@@ -126,11 +130,33 @@ class _InformationCardState extends State<InformationCard> {
             var totalStorage = ((dailyCount * 100) / totalUsers).toInt();
             var weeklyStorage = ((weeklyCount * 100) / totalUsers).toInt();
 
+            /***********************/
+            var Monday= dailyCounts['Monday']?? 0;
+            var  Tuesday= dailyCounts['Tuesday']?? 0;
+            var  Wednesday= dailyCounts['Wednesday']?? 0;
+            var  Thursday= dailyCounts['Thursday']?? 0;
+            var Friday= dailyCounts['Friday']?? 0;
+            var Saturday= dailyCounts['Saturday']?? 0;
+            var Sunday= dailyCounts['Sunday']?? 0;
+
             setState(() {
               dailyInfo[0].volumeData = dailyCount;
               dailyInfo[0].weeklyData = weeklyCount;
               dailyInfo[0].totalStorage = totalStorage.toString();
               dailyInfo[0].weeklyStorage = weeklyStorage.toString();
+              /*******************************/
+              dailyInfo[0].spots=[
+               FlSpot(1, Monday.toDouble()),
+               FlSpot(2, Tuesday.toDouble()),
+               FlSpot(3, Wednesday.toDouble()),
+               FlSpot(4, Thursday.toDouble()),
+               FlSpot(5, Friday.toDouble()),
+               FlSpot(6, Saturday.toDouble()),
+               FlSpot(7, Sunday.toDouble()),
+              ];
+
+              print("/*******************************/");
+              print(dailyInfo[0].spots);
             });
           } catch (e) {
             // Handle the exception as needed
@@ -138,7 +164,7 @@ class _InformationCardState extends State<InformationCard> {
           }
         }
         print(counts);
-        print(counts['dailyCount']);
+        print(dailyCounts);
 
 
       }
@@ -154,7 +180,7 @@ class _InformationCardState extends State<InformationCard> {
 
     // Calculate start and end dates for daily and weekly counts
     DateTime dailyStartDate = DateTime(currentDate.year, currentDate.month, currentDate.day);
-    DateTime weeklyStartDate = currentDate.subtract(Duration(days: currentDate.weekday - 1));
+    DateTime weeklyStartDate = currentDate.subtract(Duration(days: currentDate.weekday ));
 
     // Filter users based on creation date
     List<UserModel> dailyUsers = users.where((user) {
@@ -171,6 +197,40 @@ class _InformationCardState extends State<InformationCard> {
       'dailyCount': dailyUsers.length,
       'weeklyCount': weeklyUsers.length,
     };
+  }
+
+
+
+
+  Map<String, int> calculateDailyCounts(List<UserModel> users) {
+    // Get the current date
+    DateTime currentDate = DateTime.now();
+
+    // Calculate start and end dates for the current week
+    DateTime weekStartDate = currentDate.subtract(Duration(days: currentDate.weekday ));
+    DateTime weekEndDate = weekStartDate.add(Duration(days: 6));
+
+    // Initialize daily counts map
+    Map<String, int> dailyCounts = {
+      'Monday': 0,
+      'Tuesday': 0,
+      'Wednesday': 0,
+      'Thursday': 0,
+      'Friday': 0,
+      'Saturday': 0,
+      'Sunday': 0,
+    };
+
+    // Filter users based on creation date and update daily counts
+    users.forEach((user) {
+      DateTime userDate = DateTime.parse(user.createdAt);
+      if (userDate.isAfter(weekStartDate) && userDate.isBefore(weekEndDate)) {
+        String dayOfWeek = DateFormat('EEEE').format(userDate);
+        dailyCounts[dayOfWeek] = dailyCounts[dayOfWeek]! + 1;
+      }
+    });
+
+    return dailyCounts;
   }
 
 }
