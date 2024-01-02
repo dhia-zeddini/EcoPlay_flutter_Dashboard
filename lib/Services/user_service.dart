@@ -145,5 +145,28 @@ class UserService{
       return [false,response.body];
     }
   }
+//forgetPwd
+  static Future<bool> forgetPwd(String email)async{
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+    };
+    var url=Uri.http(Config.apiURL,Config.forgetPwdAPI);
+    Map<String, String> requestBody = {
+      "data": email,
+    };
+    var response=await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(requestBody),
+    );
+    print("url");
+    print(url);
+    if(response.statusCode==200){
+     // await SharedService.setLogindetails(loginResponseJson(response.body));
 
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

@@ -37,6 +37,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
   bool isChecked = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKeyForget = GlobalKey<FormState>();
   String? email;
   String? password;
   bool isAPIcallProcess = false;
@@ -129,7 +130,11 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                                       fit: StackFit.loose,
                                       clipBehavior: Clip.none,
                                       children: [
-                                        addFormUI(context),
+                                        Form(
+                                          key: _formKeyForget,
+                                            child: addFormUI(context),
+                                        )
+
                                       ]),
                                 ),
                                 SlideTransition(
@@ -449,6 +454,15 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
       return false;
     }
   }
+  bool validateAndSaveForget() {
+    final form = _formKeyForget.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   Widget addFormUI(BuildContext context) {
     return SingleChildScrollView(
@@ -487,7 +501,32 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
           Center(
             child: FormHelper.submitButton(
               "Send",
-              () {},
+                  () {
+
+                if (validateAndSaveForget()) {
+                  setState(() {
+                    isAPIcallProcess = true;
+                  });
+                  print(email!);
+                  UserService.forgetPwd(email!).then((response) {
+                    setState(() {
+                      isAPIcallProcess = false;
+                    });
+                    if (response) {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => TableUserScreen()),
+                              (route) => false);
+                    } else {
+                      FormHelper.showSimpleAlertDialog(
+                          context, Config.appName, "User dose not exist", "OK", () {
+                        Navigator.pop(context);
+                      });
+                    }
+                  });
+                }
+              },
               btnColor: Colors.white,
               borderColor: Colors.pink,
               txtColor: Colors.pink,
