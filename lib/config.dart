@@ -5,6 +5,8 @@ class Config{
   static const String loginAPI="/admin/login";
   static const String userAPI="/user/";
   static const String forgetPwdAPI="/forgetPwd";
+  static const String otpAPI="/otp";
+  static const String newPwdAPI="/newPwd";
   static const String newAdminAPI="/newAdmin";
   static const String adminAPI="/user/admins";
   static const String banAPI="/user/ban";

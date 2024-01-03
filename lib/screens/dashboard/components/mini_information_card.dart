@@ -26,28 +26,7 @@ class MiniInformation extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            ElevatedButton.icon(
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.green,
-                padding: EdgeInsets.symmetric(
-                  horizontal: defaultPadding * 1.5,
-                  vertical:
-                  defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).push(new MaterialPageRoute<Null>(
-                  builder: (BuildContext context) {
-                    return new FormMaterial();
-                  },
-                  fullscreenDialog: true,
-                ));
-              },
-              icon: Icon(Icons.add),
-              label: Text(
-                "Add New",
-              ),
-            ),
+
           ],
         ),
         SizedBox(height: defaultPadding),

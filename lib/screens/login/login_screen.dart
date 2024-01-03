@@ -5,6 +5,7 @@ import 'package:smart_admin_dashboard/core/widgets/app_button_widget.dart';
 import 'package:smart_admin_dashboard/core/widgets/input_widget.dart';
 import 'package:smart_admin_dashboard/screens/User/TableUserScreen.dart';
 import 'package:smart_admin_dashboard/screens/home/home_screen.dart';
+import 'package:smart_admin_dashboard/screens/dashboard/dashboard_screen.dart';
 import 'package:smart_admin_dashboard/screens/login/components/slider_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -38,10 +39,16 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   bool isChecked = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKeyForget = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKeyOtp = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKeyNewPwd = GlobalKey<FormState>();
   String? email;
   String? password;
+  String? newPassword;
+  String? confirmPassword;
+  String? otp;
   bool isAPIcallProcess = false;
   bool hidePwd = true;
+  bool hideNewPwd = true;
   @override
   void initState() {
     super.initState();
@@ -58,7 +65,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     if (cachedToken != null) {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (builder) => TableUserScreen()),
+        MaterialPageRoute(builder: (builder) => DashboardScreen()),
         (route) => false,
       );
     }
@@ -137,16 +144,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
 
                                       ]),
                                 ),
-                                SlideTransition(
-                                  position:
-                                      _animationController!.drive(tweenLeft2),
-                                  child: Stack(
-                                      fit: StackFit.loose,
-                                      clipBehavior: Clip.none,
-                                      children: [
-                                        otpFormUI(context),
-                                      ]),
-                                ),
+
                               ],
                             ),
                           ),
@@ -175,135 +173,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     );
   }
 
-  Container _registerScreen(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      constraints: BoxConstraints(
-        minHeight: MediaQuery.of(context).size.height - 0.0,
-      ),
-      child: Form(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            InputWidget(
-              keyboardType: TextInputType.emailAddress,
-              onSaved: (String? value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              onChanged: (String? value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String? value) {
-                return (value != null && value.contains('@'))
-                    ? 'Do not use the @ char.'
-                    : null;
-              },
 
-              topLabel: "Name",
-
-              hintText: "Enter Name",
-              // prefixIcon: FlutterIcons.chevron_left_fea,
-            ),
-            SizedBox(height: 8.0),
-            InputWidget(
-              keyboardType: TextInputType.emailAddress,
-              onSaved: (String? value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              onChanged: (String? value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String? value) {
-                return (value != null && value.contains('@'))
-                    ? 'Do not use the @ char.'
-                    : null;
-              },
-
-              topLabel: "Email",
-
-              hintText: "Enter E-mail",
-              // prefixIcon: FlutterIcons.chevron_left_fea,
-            ),
-            SizedBox(height: 8.0),
-            InputWidget(
-              topLabel: "Password",
-              obscureText: true,
-              hintText: "Enter Password",
-              onSaved: (String? uPassword) {},
-              onChanged: (String? value) {},
-              validator: (String? value) {},
-            ),
-            SizedBox(height: 24.0),
-            AppButton(
-              type: ButtonType.PRIMARY,
-              text: "Sign Up",
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-            ),
-            SizedBox(height: 24.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
-                    ),
-                    Text("Remember Me")
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 24.0),
-            Center(
-              child: Wrap(
-                runAlignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  Text(
-                    "Already have an account?",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1!
-                        .copyWith(fontWeight: FontWeight.w300),
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      if (_isMoved) {
-                        _animationController!.reverse();
-                      } else {
-                        _animationController!.forward();
-                      }
-                      _isMoved = !_isMoved;
-                    },
-                    child: Text("Sign In",
-                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontWeight: FontWeight.w400, color: greenColor)),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget loginUI(BuildContext context) {
     return Container(
@@ -445,25 +315,6 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     );
   }
 
-  bool validateAndSave() {
-    final form = _formKey.currentState;
-    if (form!.validate()) {
-      form.save();
-      return true;
-    } else {
-      return false;
-    }
-  }
-  bool validateAndSaveForget() {
-    final form = _formKeyForget.currentState;
-    if (form!.validate()) {
-      form.save();
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   Widget addFormUI(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -513,11 +364,28 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
                       isAPIcallProcess = false;
                     });
                     if (response) {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (builder) => TableUserScreen()),
-                              (route) => false);
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                                title: Center(
+                                  child: Text("OTP"),
+                                ),
+                                content: Container(
+
+                                  height: 160,
+                                  width: 300,
+                                  child: Column(
+                                    children: [
+                                      if (Responsive.isDesktop(context))
+                                        Form(
+                                          key: _formKeyOtp,
+                                          child: otpFormUI(context),
+                                        ),
+                                    ],
+                                  ),
+                                ));
+                          });
                     } else {
                       FormHelper.showSimpleAlertDialog(
                           context, Config.appName, "User dose not exist", "OK", () {
@@ -570,86 +438,269 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
   Widget otpFormUI(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.start,
-        //crossAxisAlignment: CrossAxisAlignment.start,
+         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
 
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: FormHelper.inputFieldWidget(
-              context,
-              "email",
-              "Email",
-              (onValidateVal) {
-                if (onValidateVal.isEmpty) {
-                  return "Email can't be empty";
-                }
-                return null;
-              },
-              (onSavedVal) {
-                email = onSavedVal;
-              },
-              showPrefixIcon: true,
-              prefixIcon: const Icon(Icons.email),
-              borderFocusColor: Colors.pink,
-              prefixIconColor: Colors.pinkAccent,
-              borderColor: Colors.pinkAccent,
-              textColor: Colors.pinkAccent,
-              hintColor: Colors.pinkAccent.withOpacity(0.7),
-            ),
-          ),
+
+
+              Padding(
+                padding: const EdgeInsets.only(top:10),
+                child: FormHelper.inputFieldWidget(
+                  context,
+                  "otp",
+                  "Enter verification code",
+                      (onValidateVal) {
+                    if (onValidateVal.isEmpty) {
+                      return "OTP can't be empty";
+                    }
+                    return null;
+                  },
+                      (onSavedVal) {
+                    otp = onSavedVal;
+                  },
+
+                  borderFocusColor: Colors.pink,
+                  prefixIconColor: Colors.pinkAccent,
+                  borderColor: Colors.pinkAccent,
+                  textColor: Colors.pinkAccent,
+                  hintColor: Colors.pinkAccent.withOpacity(0.7),
+                ),
+              ),
+
+
           const SizedBox(
-            height: 50,
+            height: 20,
           ),
           Center(
             child: FormHelper.submitButton(
-              "Send",
+              "Save",
               () {
-                if (_isMoved) {
-                _animationController!.reverse();
-              } else {
-                _animationController!.forward();
-              }
-              _isMoved = !_isMoved;},
+
+                if (validateAndSaveOtp()) {
+                  setState(() {
+                    isAPIcallProcess = true;
+                  });
+                  print(email!);
+                  UserService.otp(otp!).then((response) {
+                    setState(() {
+                      isAPIcallProcess = false;
+                    });
+                    if (response) {
+                      Navigator.pop(context);
+                      showDialog(
+                          context: context,
+                          builder: (_) {
+                            return AlertDialog(
+                                title: Center(
+                                  child: Text("OTP"),
+                                ),
+                                content: Container(
+
+                                  height: 210,
+                                  width: 300,
+                                  child: Column(
+                                    children: [
+                                      if (Responsive.isDesktop(context))
+                                        Form(
+                                          key: _formKeyNewPwd,
+                                          child: newPwdFormUI(context),
+                                        ),
+                                    ],
+                                  ),
+                                ));
+                          });
+
+                    }else {
+                      FormHelper.showSimpleAlertDialog(
+                          context, Config.appName, "Invalid Code", "OK", () {
+                        Navigator.pop(context);
+                      });
+                    }
+                  });
+                }
+              },
               btnColor: Colors.white,
               borderColor: Colors.pink,
               txtColor: Colors.pink,
             ),
           ),
+        ],
+      ),
+    );
+  }
+  Widget newPwdFormUI(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+         mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+
+        children: [
+
+
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+            ),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "password",
+              "New Password",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "Password can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                    newPassword = onSavedVal;
+              },
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.lock),
+              borderFocusColor: Colors.pink,
+              prefixIconColor: Colors.pinkAccent,
+              borderColor: Colors.pinkAccent,
+              textColor: Colors.pinkAccent,
+              hintColor: Colors.pinkAccent.withOpacity(0.7),
+              obscureText: hidePwd,
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      hidePwd = !hidePwd;
+                    });
+                  },
+                  color: Colors.pinkAccent.withOpacity(0.7),
+                  icon: Icon(
+                    hidePwd ? Icons.visibility : Icons.visibility_off,
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+            ),
+            child: FormHelper.inputFieldWidget(
+              context,
+              "password",
+              "Confirm Password",
+                  (onValidateVal) {
+                if (onValidateVal.isEmpty) {
+                  return "Password can't be empty";
+                }
+                return null;
+              },
+                  (onSavedVal) {
+                confirmPassword = onSavedVal;
+              },
+              showPrefixIcon: true,
+              prefixIcon: const Icon(Icons.lock),
+              borderFocusColor: Colors.pink,
+              prefixIconColor: Colors.pinkAccent,
+              borderColor: Colors.pinkAccent,
+              textColor: Colors.pinkAccent,
+              hintColor: Colors.pinkAccent.withOpacity(0.7),
+              obscureText: hidePwd,
+              suffixIcon: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      hidePwd = !hidePwd;
+                    });
+                  },
+                  color: Colors.pinkAccent.withOpacity(0.7),
+                  icon: Icon(
+                    hidePwd ? Icons.visibility : Icons.visibility_off,
+                  )),
+            ),
+          ),
+
+
           const SizedBox(
             height: 20,
           ),
           Center(
-            child:  RichText(
-                text: TextSpan(
-                  style: TextStyle(
-                    color: Colors.pinkAccent.withOpacity(0.8),
-                    fontSize: 14.5,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "otp",
-                      style: const TextStyle(
+            child: FormHelper.submitButton(
+              "Save",
+              () {
 
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()..onTap = () {
-                        if (_isMoved) {
-                          _animationController!.reverse();
-                        } else {
-                          _animationController!.forward();
-                        }
-                        _isMoved = !_isMoved;
-                      },
-                    ),
-                  ],
-                ),
-              ),
+                if (validateAndSaveNewPwd()&& newPassword==confirmPassword) {
+                  setState(() {
+                    isAPIcallProcess = true;
+                  });
+
+                  UserService.newPwd(newPassword!).then((response) {
+                    setState(() {
+                      isAPIcallProcess = false;
+                    });
+                    if (response) {
+                     print("new password ok");
+                     Navigator.pop(context);
+                     if (_isMoved) {
+                       _animationController!.reverse();
+                     } else {
+                       _animationController!.forward();
+                     }
+                     _isMoved = !_isMoved;
+                    } else {
+                      FormHelper.showSimpleAlertDialog(
+                          context, Config.appName, "Invalid Code", "OK", () {
+                        Navigator.pop(context);
+                      });
+                    }
+                  });
+                }else{
+                  print("You have to confirm your password");
+                  FormHelper.showSimpleAlertDialog(
+                      context, Config.appName, "You have to confirm your password", "OK", () {
+                    Navigator.pop(context);
+                  });
+                }
+              },
+
+              btnColor: Colors.white,
+              borderColor: Colors.pink,
+              txtColor: Colors.pink,
             ),
-
+          ),
         ],
       ),
     );
+  }
+
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+  bool validateAndSaveForget() {
+    final form = _formKeyForget.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+  bool validateAndSaveOtp() {
+    final form = _formKeyOtp.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+  bool validateAndSaveNewPwd() {
+    final form = _formKeyNewPwd.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

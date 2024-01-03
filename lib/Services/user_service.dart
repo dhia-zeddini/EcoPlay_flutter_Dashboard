@@ -9,6 +9,7 @@ import 'package:smart_admin_dashboard/models/NewAdmin_response_model.dart';
 import '../config.dart';
 import '../models/Login_request_model.dart';
 import '../models/Login_response_model.dart';
+import '../models/forgetPwd_response_model.dart';
 import '../models/NewAdmin_request_model.dart';
 import '../models/UserModel.dart';
 import 'dart:html' as html;
@@ -159,10 +160,63 @@ class UserService{
       headers: requestHeaders,
       body: jsonEncode(requestBody),
     );
-    print("url");
-    print(url);
+
+    print(response.body);
     if(response.statusCode==200){
      // await SharedService.setLogindetails(loginResponseJson(response.body));
+      cache.set("tokenForget", forgetPwdResponseJson(response.body).token);
+      String token = forgetPwdResponseJson(response.body).token;
+      html.window.localStorage['tokenForget'] = token;
+      return true;
+    }else{
+      return false;
+    }
+  }
+  static Future<bool> otp(String code)async{
+    String? token = html.window.localStorage['tokenForget'];
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+      'token':"Bearer ${token}"
+    };
+    var url=Uri.http(Config.apiURL,Config.otpAPI);
+    Map<String, String> requestBody = {
+      "data": code,
+    };
+    var response=await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(requestBody),
+    );
+
+    print(response.body);
+    if(response.statusCode==200){
+     // await SharedService.setLogindetails(loginResponseJson(response.body));
+      cache.set("tokenForget", forgetPwdResponseJson(response.body).token);
+      String token = forgetPwdResponseJson(response.body).token;
+      html.window.localStorage['tokenForget'] = token;
+      return true;
+    }else{
+      return false;
+    }
+  }
+  static Future<bool> newPwd(String password)async{
+    String? token = html.window.localStorage['tokenForget'];
+    Map<String,String> requestHeaders={
+      'Content-Type':'application/json',
+      'token':"Bearer ${token}"
+    };
+    var url=Uri.http(Config.apiURL,Config.newPwdAPI);
+    Map<String, String> requestBody = {
+      "password": password,
+    };
+    var response=await client.post(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(requestBody),
+    );
+
+    print(response.body);
+    if(response.statusCode==200){
 
       return true;
     }else{

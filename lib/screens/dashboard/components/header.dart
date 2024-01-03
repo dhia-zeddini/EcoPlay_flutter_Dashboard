@@ -23,16 +23,13 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Hello, Fedi 👋",
+                "Welcome to EcoPlay dashboard 👋",
                 style: Theme.of(context).textTheme.headline6,
               ),
               SizedBox(
                 height: 8,
               ),
-              Text(
-                "Welcome to your dashboard",
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
+
             ],
           ),
         if (!Responsive.isMobile(context))
