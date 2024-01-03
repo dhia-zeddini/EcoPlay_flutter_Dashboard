@@ -65,7 +65,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
     if (cachedToken != null) {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (builder) => DashboardScreen()),
+        MaterialPageRoute(builder: (builder) => TableUserScreen()),
         (route) => false,
       );
     }
@@ -184,7 +184,7 @@ class _LoginState extends State<Login> with SingleTickerProviderStateMixin {
           FormHelper.inputFieldWidget(
             context,
             "phoneNumber",
-            "Phone Number",
+            "Email Or Phone Number",
             (onValidateVal) {
               if (onValidateVal.isEmpty) {
                 return "Email can't be empty";

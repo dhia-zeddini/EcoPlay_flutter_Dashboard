@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'dart:typed_data';
 import 'package:elegant_notification/elegant_notification.dart';
+import 'dart:math';
+import 'package:smart_admin_dashboard/screens/challenges/Challenges.dart';
 
 class CreateChallengeForm extends StatefulWidget {
   final VoidCallback onChallengeCreated;
@@ -28,6 +30,73 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
   final TextEditingController _endDateController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _pointValueController = TextEditingController();
+
+  final _random = Random();
+
+  // Method to generate a random challenge idea
+  Future<void> _generateRandomChallenge() async {
+    var url = Uri.parse(
+        'https://api.airtable.com/v0/appTsPaK7TqmmTHlB/ChallengesModel');
+
+    print('Starting API request...');
+
+    try {
+      // Make a GET request to Airtable API
+      var response = await http.get(
+        url,
+        // Set the headers with your Personal Access Token
+        headers: {
+          'Authorization':
+              'Bearer patI8JN3wibBE1te1.4ed0386f633f548ebce212139b203e74f6216b06e55634e836018e7ac5fc9b6f',
+          'Content-Type': 'application/json'
+        },
+      );
+
+      print('API request completed with status code: ${response.statusCode}');
+
+      // Check if the request was successful
+      if (response.statusCode == 200) {
+        // Parse the response body
+        var decodedResponse = json.decode(response.body);
+        print('Response data: $decodedResponse');
+
+        // Extract the records from the response
+        List<Map<String, dynamic>> challenges = List<Map<String, dynamic>>.from(
+          decodedResponse['records'].map(
+            (record) => {
+              "title": record['fields']['title'],
+              "description": record['fields']['description'],
+              "category": record['fields']['category'],
+            },
+          ),
+        );
+
+        print('Number of challenges fetched: ${challenges.length}');
+
+        // Randomly select one challenge from the list
+        final randomChallenge = challenges[_random.nextInt(challenges.length)];
+        print('Random challenge selected: $randomChallenge');
+
+        // Set the form fields to the selected challenge's details
+        setState(() {
+          _titleController.text = randomChallenge["title"]!;
+          _descriptionController.text = randomChallenge["description"]!;
+          _categoryController.text = randomChallenge["category"]!;
+          // You can also set default or random dates for start and end
+        });
+      } else {
+        // If the server did not return a 200 OK response,
+        // throw an exception.
+        print('Failed to load challenges. Status code: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        throw Exception('Failed to load challenges');
+      }
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error occurred during API request: $e');
+    }
+  }
+
   XFile? _media;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -77,6 +146,20 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
 
   Future<void> _submitForm() async {
     if (_formKey.currentState!.validate()) {
+      if (_selectedEndDate!.isBefore(_selectedStartDate!)) {
+        // If the end date is before the start date, show an error.
+        ElegantNotification.error(
+          title: Text(
+            'Error',
+            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          ),
+          description: Text(
+            'End date must be after the start date.',
+            style: TextStyle(color: Colors.black),
+          ),
+        ).show(context);
+        return; // Stop the form submission.
+      }
       try {
         var uri = Uri.parse('http://localhost:9001/api/challenges');
         var request = http.MultipartRequest('POST', uri)
@@ -123,7 +206,7 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
 
   String _convertDate(String date) {
     final originalFormat =
-    DateFormat('dd-MM-yyyy'); // Adjust the format if necessary
+        DateFormat('dd-MM-yyyy'); // Adjust the format if necessary
     final targetFormat = DateFormat('dd-MM-yyyy');
     final dateTime = originalFormat.parseStrict(date);
     return targetFormat.format(dateTime);
@@ -159,22 +242,22 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
                   child: _imageBytes != null
                       ? ImagePreview(imageBytes: _imageBytes!)
                       : Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200], // Light grey color
-                      border: Border.all(
-                        color: Colors
-                            .grey[300]!, // Slightly darker grey border
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      Icons.photo, // Gallery icon
-                      color: Colors.grey[500], // Medium grey color
-                      size: 50,
-                    ),
-                    alignment: Alignment.center,
-                  ),
+                          height: 200,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200], // Light grey color
+                            border: Border.all(
+                              color: Colors
+                                  .grey[300]!, // Slightly darker grey border
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            Icons.photo, // Gallery icon
+                            color: Colors.grey[500], // Medium grey color
+                            size: 50,
+                          ),
+                          alignment: Alignment.center,
+                        ),
                 ),
 
                 // Spacing between image and button
@@ -187,9 +270,17 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
                         .min, // Use minimum space needed by the column
                     children: [
                       ElevatedButton(
+                        onPressed: _generateRandomChallengev2,
+                        child: Text("Generate Random Challenge"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                          onPrimary: Colors.white,
+                        ),
+                      ),
+                      ElevatedButton(
                         onPressed: _pickMedia,
                         child:
-                        Text(_media != null ? 'Change File' : 'Pick File'),
+                            Text(_media != null ? 'Change File' : 'Pick File'),
                         style: ElevatedButton.styleFrom(
                           primary: Colors.teal,
                           onPrimary: Colors.white,
@@ -203,7 +294,7 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
 
             SizedBox(
                 height:
-                20), // Spacing between the row and the "Create Challenge" button
+                    20), // Spacing between the row and the "Create Challenge" button
 
             // "Create Challenge" button
             ElevatedButton(
@@ -246,6 +337,9 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
         if (value == null || value.trim().isEmpty) {
           return 'Please enter a $label';
         }
+        if (isNumeric && value.isNotEmpty && int.tryParse(value) == null) {
+          return 'Please enter a valid number';
+        }
         return null;
       },
     );
@@ -282,5 +376,28 @@ class _CreateChallengeFormState extends State<CreateChallengeForm> {
       alignment: Alignment.center,
       child: Image.memory(imageBytes, fit: BoxFit.cover),
     );
+  }
+
+  Future<void> _generateRandomChallengev2() async {
+    print('Generating random challenge using mock data...');
+
+    try {
+      // Randomly select one challenge from the mock data
+      final randomChallenge =
+          mockChallenges[_random.nextInt(mockChallenges.length)];
+      print('Random challenge selected: $randomChallenge');
+
+      // Set the form fields to the selected challenge's details
+      setState(() {
+        _titleController.text = randomChallenge["title"] ?? '';
+        _descriptionController.text = randomChallenge["description"] ?? '';
+        _categoryController.text = randomChallenge["category"] ?? '';
+        // You can also set default or random dates for start and end
+      });
+    } catch (e) {
+      // Handle any errors that occur during the request
+      print('Error occurred during mock data retrieval: $e');
+      throw Exception('Failed to generate challenges from mock data');
+    }
   }
 }

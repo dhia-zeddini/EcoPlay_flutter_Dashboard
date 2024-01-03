@@ -4,10 +4,13 @@ import 'package:smart_admin_dashboard/models/challenge.dart';
 import 'dart:convert';
 import 'package:smart_admin_dashboard/core/constants/color_constants.dart';
 import 'package:smart_admin_dashboard/screens/challenges/CreateChallenge.dart';
+import 'package:smart_admin_dashboard/screens/challenges/leaderboard.dart';
+import 'package:smart_admin_dashboard/screens/challenges/winners.dart';
 import 'package:smart_admin_dashboard/screens/home/components/side_menu.dart';
 import 'package:smart_admin_dashboard/responsive.dart';
 import 'package:elegant_notification/elegant_notification.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
+import 'package:intl/intl.dart';
 
 class ChallengeView extends StatefulWidget {
   const ChallengeView({Key? key}) : super(key: key);
@@ -190,6 +193,11 @@ class _ChallengeViewState extends State<ChallengeView> {
                 backgroundColor: Colors.green,
               ),
             ),
+            Positioned(
+                bottom: 0, // Align with the bottom of the sidebar
+                left: MediaQuery.of(context).size.width *
+                    0.44, // Adjust this value as needed
+                child: WinnersCarousel())
           ],
         ),
       ),
@@ -223,6 +231,31 @@ class _ChallengeViewState extends State<ChallengeView> {
               ),
             ),
           ),
+        );
+      },
+    );
+  }
+
+  void _showLeaderboardDialog(BuildContext context, String challengeTitle) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+              'Leaderboard of the challenge :  $challengeTitle'), // Personalized title
+          content: Container(
+            width: 500,
+            height: 400, // Adjust the height as needed
+            child: LeaderBoardScreen(), // Your custom LeaderBoardScreen widget
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
         );
       },
     );
@@ -294,7 +327,7 @@ class _ChallengeViewState extends State<ChallengeView> {
                               style: TextStyle(color: Colors.white)),
                           SizedBox(height: 8),
                           Text(
-                              'Inappropriate comments: ${challenge.comments.length}',
+                              'Inappropriate comments: ${challenge.comments.length - 1}',
                               style: TextStyle(color: Colors.white)),
                           SizedBox(height: 24),
                           Align(
@@ -336,35 +369,92 @@ class _ChallengeViewState extends State<ChallengeView> {
         child: DataTable(
           columnSpacing: defaultPadding, // consistent spacing
           columns: [
-            DataColumn(label: Text("ID")),
             DataColumn(label: Text("Title")),
             DataColumn(label: Text("Category")),
             DataColumn(label: Text("Participants")),
+            DataColumn(label: Text("Start Date")),
+            DataColumn(label: Text("End Date")),
             DataColumn(
-              label: Text("Operation"),
+              label: Expanded(
+                // This will force the child to fill the available space
+                child: Center(
+                  child: Text('Operation'),
+                ),
+              ),
             ),
           ],
           rows: _filteredChallenges.map((challenge) {
             return DataRow(
               cells: [
-                DataCell(Text(challenge.id)),
                 DataCell(Text(challenge.title)),
                 DataCell(Text(challenge.category)),
                 DataCell(Text(challenge.participants.length.toString())),
                 DataCell(
+                    Text(DateFormat('yyyy-MM-dd').format(challenge.startDate))),
+                DataCell(
+                    Text(DateFormat('yyyy-MM-dd').format(challenge.endDate))),
+                DataCell(
                   Row(
                     children: [
-                      TextButton(
-                        child:
-                            Text('View', style: TextStyle(color: greenColor)),
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green.withOpacity(0.5),
+                        ),
+                        icon: Icon(Icons.view_agenda_outlined),
                         onPressed: () => _showDetailCard(challenge),
+                        label: Text("View"),
                       ),
                       SizedBox(
                         width: 6,
                       ),
-                      TextButton(
-                        child: Text("Archive",
-                            style: TextStyle(color: Colors.redAccent)),
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue.withOpacity(0.5),
+                        ),
+                        onPressed: () {
+                          DateTime endDate =
+                              challenge.endDate; // Your challenge's end date
+                          DateTime now = DateTime.now();
+
+                          if (endDate.isBefore(now)) {
+                            // If the end date has passed, show the leaderboard
+                            _showLeaderboardDialog(context, challenge.title);
+                          } else {
+                            // If the end date has not passed, show a message
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Challenge in Progress'),
+                                  content: Text(
+                                      'This challenge is still in progress.'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text('OK'),
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .pop(); // Close the dialog
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
+                        icon: Icon(Icons.leaderboard_outlined),
+                        label: Text("LeaderBoard"),
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red.withOpacity(0.5),
+                        ),
+                        label: Text("Archive"),
+                        icon: Icon(Icons.archive_outlined),
+
                         onPressed: () {
                           showDialog(
                               context: context,
